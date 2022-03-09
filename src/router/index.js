@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { PrivateRoutes, PublicRoutes } from "./routes";
 import Error404 from "pages/Error404";
 import PublicWrapper from "../hoc/PublicWrapper";
@@ -10,7 +10,6 @@ const Router = () => {
     <>
       <BrowserRouter>
         <Switch>
-          <Redirect exact from="/" to="/u/dashboard" />
           {/* All the public routes */}
           {PublicRoutes.map((route) => (
             <PublicWrapper key={`Route-${route.path}`} {...route} />
