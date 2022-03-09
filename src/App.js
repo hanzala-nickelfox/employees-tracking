@@ -7,7 +7,6 @@ import { defaultTheme } from "./themes/defaultTheme";
 import store, { persistor } from "redux/store";
 import "./styles/global.scss";
 
-
 /**
  * @description Check if browser is Safar
  * @description It'll be usefull for web notifications
