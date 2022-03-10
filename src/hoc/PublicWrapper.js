@@ -10,7 +10,7 @@ const PublicWrapper = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) =>
-        isLoggedIn !== true ? (
+        isLoggedIn !== false ? (
           <PublicLayout {...props}>
             <Component {...props} />
           </PublicLayout>

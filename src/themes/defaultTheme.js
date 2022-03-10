@@ -2,10 +2,10 @@
 export const defaultTheme = {
   palette: {
     primary: {
-      main: "#FD2B88"
+      main: "#5048E5"
     },
     secondary: {
-      main: "#FD2B88"
+      main: "#111827"
     },
     error: {
       main: "#FF0040"
