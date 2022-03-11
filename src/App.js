@@ -21,6 +21,8 @@ if (window.safari) {
 function App() {
   const currentTheme = createTheme(defaultTheme);
 
+
+
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
