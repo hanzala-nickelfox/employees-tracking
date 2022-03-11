@@ -2,8 +2,9 @@ import React from "react";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import AppRouter from "./router";
-
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import store, { persistor } from "redux/store";
+import { defaultTheme } from "./themes/defaultTheme";
 import "./styles/global.scss";
 
 /**
@@ -18,14 +19,14 @@ if (window.safari) {
 }
 
 function App() {
-
+  const currentTheme = createTheme(defaultTheme);
 
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-
-        <AppRouter />
-
+        <ThemeProvider theme={currentTheme}>
+          <AppRouter />
+        </ThemeProvider>
       </PersistGate>
     </Provider>
   );
