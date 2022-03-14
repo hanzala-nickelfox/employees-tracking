@@ -25,6 +25,7 @@ const SignUp = () => {
               />
               <br /> <br />
               <BasicBtn text="Submit"></BasicBtn>
+              <button className="btn btn-success">button</button>
             </form>
           </div>
         </div>

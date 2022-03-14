@@ -3,6 +3,7 @@ import AppRouter from "./router";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { defaultTheme } from "./themes/defaultTheme";
 import "./styles/global.scss";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 /**
  * @description Check if browser is Safar
