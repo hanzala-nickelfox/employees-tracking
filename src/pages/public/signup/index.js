@@ -8,7 +8,7 @@ const SignUp = () => {
     <>
       <section className="signUp">
         <div className="signUp__container">
-          <div className="signUp__container__title">Sign Up</div>
+          <h3 className="signUp__container__title">Sign Up</h3>
           <div className="signUp__container__form">
             <form>
               <br />
@@ -27,6 +27,10 @@ const SignUp = () => {
               <BasicBtn text="Submit"></BasicBtn>
             </form>
           </div>
+        </div>
+
+        <div className="signUp__container">
+          <h3>Resultes</h3>
         </div>
       </section>
     </>
