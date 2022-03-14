@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import "./signUp.scss";
 import BasicBtn from "../../../components/shared/Basic-btn.js";
-import TextField from "../../../components/shared/FormField.js";
-import { Alert } from "react-bootstrap";
+import FormField from "../../../components/shared/FormField.js";
+import { Alert, Col, Row } from "react-bootstrap";
+import Avatar from '@mui/material/Avatar';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
 import Login from "../login/index";
+import { Container, TextField } from '@mui/material';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
 
 const SignUp = () => {
   const [namelog, setNamelog] = useState("");
@@ -44,6 +50,70 @@ const SignUp = () => {
 
   return (
     <>
+      <Container component="main" maxWidth="xs" className="mt-5">
+        <Row className="text-center justify-content-center mb-4">
+          <Avatar className="mb-4" sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography className="mb-4" component="h1" variant="h5">
+            Sign in
+          </Typography>
+        </Row>
+        <Row >
+          <Col lg={12} className='mb-4'>
+            <FormField
+              type='text'
+              name={namelog}
+              label='Full Name'
+              placeholder='Enter Name'
+              onChange={(e) => setNamelog(e.target.value)}
+            ></FormField>
+          </Col>
+          <Col lg={12} className='mb-4'>
+            <FormField
+              label='Email'
+              type="email"
+              name={email}
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+            ></FormField>
+          </Col>
+          <Col lg={12} className='mb-4'>
+            <FormField
+              type="password"
+              name={password}
+              label='Password'
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+            ></FormField>
+          </Col>
+          <Col lg={12} className='mb-4'>
+            <FormField
+              type="number"
+              name={confirmPassword}
+              label='Confirm Password'
+              placeholder="Confirm password"
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            ></FormField>
+          </Col>
+          <Col lg={12} className='mb-4'>
+            <BasicBtn variant='contained' text='Sign Up'></BasicBtn>
+          </Col>
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href="#" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
+        </Row>
+      </Container>
+
       <button onClick={AlerButton()}>Alert button</button>
       {login !== false ? (
         <section className="signUp">
