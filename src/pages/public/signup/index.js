@@ -10,43 +10,29 @@ const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
   const [flag, setFlag] = useState(false);
   const [signUp, setSignUp] = useState(true);
 
-  // useEffect(() => {
-  //   // storing input name
-  //   localStorage.setItem("name", JSON.stringify(name));
-  // }, [name]);
-
   function handleSubmit(e) {
     e.preventDefault();
-    // console.log("check====");
 
-    if (!name || !email || !password || !confirmPassword) {
+    if (!name || !email || !password || !confirmpassword) {
       setFlag(true);
-      console.log(localStorage, "localStorage true=====");
-      console.log(name, "name====");
       localStorage.setItem("Name", JSON.stringify(name));
       localStorage.setItem("Email", JSON.stringify(email));
       localStorage.setItem("Password", JSON.stringify(password));
+      localStorage.setItem("Confirm password", JSON.stringify(confirmpassword));
 
       setSignUp(!signUp);
     } else {
-      console.log(localStorage, "localStorage false=====");
       setFlag(false);
     }
-  }
-
-  function handleName(e) {
-    const value = e.target.value;
-    setName(value);
   }
 
   function hanldeClick(e) {
     e.preventDefault();
     setSignUp(false);
-    console.log(signUp, "sign up false=====");
   }
 
   return (
@@ -62,28 +48,31 @@ const SignUp = () => {
                   type="text"
                   name="fullname"
                   value={name}
-                  onChange={handleName}
+                  onChange={(e) => setName(e.target.value)}
                   placeholder="Full name"
                 />
                 <br /> <br />
                 <TextField
                   type="email"
                   name="email"
+                  value={email}
                   placeholder="Email"
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <br /> <br />
                 <TextField
                   type="number"
-                  name="password"
+                  name="Password"
+                  value={password}
                   placeholder="Password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <br /> <br />
                 <TextField
                   type="number"
-                  name={confirmPassword}
-                  placeholder="Confirm password"
+                  name="confirmPassword"
+                  value={confirmpassword}
+                  placeholder="Password"
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
                 <br /> <br />
@@ -119,7 +108,7 @@ const SignUp = () => {
                 </Alert>
               ) : (
                 <Alert color="primary" variant="warn">
-                  <h3>Please fill the details</h3>
+                  <h3></h3>
                 </Alert>
               )}
             </>
