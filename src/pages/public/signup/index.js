@@ -2,9 +2,9 @@ import React from "react";
 import { useState } from "react";
 import "./signUp.scss";
 import BasicBtn from "../../../components/shared/Basic-btn.js";
-import TextField from "../../../components/shared/FormField.js";
 import { Alert } from "react-bootstrap";
 import Login from "../login/index";
+import { TextField } from "@mui/material";
 
 const SignUp = () => {
   const [name, setName] = useState("");
