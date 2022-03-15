@@ -62,7 +62,7 @@ const Login = () => {
               </div>
               <br />
               <h3 className="d-iniline">
-                if you dont have account sign up:
+                If you dont have account sign up:
                 <BasicBtn text="Sign up" handleClick={hanldeClick}></BasicBtn>
               </h3>
 

@@ -87,15 +87,6 @@ const SignUp = () => {
             <BasicBtn text="login" handleClick={hanldeClick}></BasicBtn>
           </h3>
 
-          {/* {flag &&
-            (<Alert color="primary" variant="danger">
-              <h3>Please fill correct info.</h3>
-            </Alert>)(
-              <Alert color="primary" variant="success">
-                false
-              </Alert>
-            )} */}
-
           {flag !== false ? (
             <Alert color="primary" variant="danger">
               <h3> Some went wrong!</h3>
