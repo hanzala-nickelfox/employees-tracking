@@ -1,23 +1,18 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Error404 from "pages/Error404";
-
+import SignUp from "pages/public/signup";
 
 const Router = () => {
-
-
   return (
-
     <BrowserRouter>
-      <Switch>
+      <Routes>
+        <Route exact path="/" element={<SignUp />} />
 
-
-        {/* Remove this and Start New Rounting Here */}
         {/* 404 page route */}
-        <Route exact path="*" component={Error404} />
-      </Switch>
+        <Route path="*" element={<Error404 />} />
+      </Routes>
     </BrowserRouter>
-
   );
 };
 
