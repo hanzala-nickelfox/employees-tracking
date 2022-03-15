@@ -11,7 +11,9 @@ function FormField(props) {
         variant={props.variant}
         type={props.type}
         name={props.name}
+        value={props.value}
         placeholder={props.placeholder}
+        onChange={props.onChange}
       />
     </>
   );

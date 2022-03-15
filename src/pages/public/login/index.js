@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 // import "./signUp.scss";
 import BasicBtn from "../../../components/shared/Basic-btn.js";
-import FromField from "../../../components/shared/FormField.js";
-import { Alert, Col, Container, Row } from "react-bootstrap";
-import Avatar from '@mui/material/Avatar';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
+import { Alert } from "react-bootstrap";
+
 import { TextField } from '@mui/material';
+
 
 const Login = () => {
   const [emaillog, setEmaillog] = useState("");
@@ -33,26 +31,69 @@ const Login = () => {
     <>
       {home ? <h1>home</h1> : <h1>hello</h1>}
 
-      <Container fluid>
-        <Row>
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+      {/* <Container component="main" maxWidth="xs" className="mt-5">
+        <Row className="text-center justify-content-center mb-4">
+          <Avatar className="mb-4" sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography className="mb-4" component="h1" variant="h5">
             Sign in
           </Typography>
         </Row>
-        <Row>
-          <Col lg={12}>
-            <FromField
-              type='email'
-              name={emaillog}
-              placeholder='email'
-              onChange={(e) => setEmaillog(e.target.value)}
-            ></FromField>
+        <Row >
+          <Col lg={12} className='mb-4'>
+            <FormField
+              type='text'
+              name={namelog}
+              label='Full Name'
+              placeholder='Enter Name'
+              onChange={(e) => setNamelog(e.target.value)}
+            ></FormField>
           </Col>
+          <Col lg={12} className='mb-4'>
+            <FormField
+              label='Email'
+              type="email"
+              name={email}
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+            ></FormField>
+          </Col>
+          <Col lg={12} className='mb-4'>
+            <FormField
+              type="password"
+              name={password}
+              label='Password'
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+            ></FormField>
+          </Col>
+          <Col lg={12} className='mb-4'>
+            <FormField
+              type="number"
+              name={confirmPassword}
+              label='Confirm Password'
+              placeholder="Confirm password"
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            ></FormField>
+          </Col>
+          <Col lg={12} className='mb-4'>
+            <BasicBtn variant='contained' text='Sign Up'></BasicBtn>
+          </Col>
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href="#" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
         </Row>
-      </Container>
+      </Container> */}
 
       <section className="signUp">
         <div className="signUp__container">
