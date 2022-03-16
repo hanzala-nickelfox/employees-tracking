@@ -18,14 +18,27 @@ const SignUp = () => {
   let navigate = useNavigate();
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(name, email, password, confirmPassword, "submit=======");
+    // var pattern = new RegExp(
+    //   /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+    // );
 
     if (!name || !email || !password || !confirmPassword) {
+      alert("Please fill all the fields");
+    } else if (name.length < 3) {
+      alert("Name must be at least 3 characters");
+    }
+    if (!email.includes("@") && !email.includes(".")) {
+      alert("Enter a valid email id");
+    } else if (password !== confirmPassword) {
+      alert("Password and Confirm Password does not match");
+    } else if (password.length < 4) {
+      alert("Password must be at least 4 characters");
+    } else {
       localStorage.setItem("Name", JSON.stringify(name));
       localStorage.setItem("Email", JSON.stringify(email));
       localStorage.setItem("Password", JSON.stringify(password));
       localStorage.setItem("Confirm password", JSON.stringify(confirmPassword));
-      alert("Successfullt SignUp");
+      alert("Successfully SignUp");
       let path = `/login`;
       navigate(path);
     }

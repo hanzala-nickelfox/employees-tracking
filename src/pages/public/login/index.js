@@ -1,25 +1,34 @@
 import React, { useState } from "react";
 import BasicBtn from "../../../components/shared/Basic-btn.js";
 import { Row, Col } from "react-bootstrap";
-
 import { Container } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import FormField from "../../../components/shared/FormField";
 import Grid from "@mui/material/Grid";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [emaillog, setEmaillog] = useState("");
   const [passwordlog, setPasswordlog] = useState("");
+  let navigate = useNavigate();
 
   function handlelogin(e) {
     e.preventDefault();
     const mail = localStorage.getItem("Email").replace(/(^"|"$)/g, "");
     const pass = localStorage.getItem("Password").replace(/(^"|"$)/g, "");
-    alert("Successfullt Login");
-    console.log(mail, pass);
+
+    if (!emaillog || !passwordlog) {
+      alert("Please fill all the fields");
+    } else if (emaillog !== mail || passwordlog !== pass) {
+      alert("Invalid Email or Password");
+    } else {
+      alert("Successfullt Login");
+      console.log(mail, pass);
+      let path = `/dashboard`;
+      navigate(path);
+    }
   }
 
   return (
