@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import "./signUp.scss";
 import BasicBtn from "../../../components/shared/Basic-btn.js";
 import { Row, Col } from "react-bootstrap";
 
@@ -19,6 +18,7 @@ const Login = () => {
     e.preventDefault();
     const mail = localStorage.getItem("Email").replace(/(^"|"$)/g, "");
     const pass = localStorage.getItem("Password").replace(/(^"|"$)/g, "");
+    alert("Successfullt Login");
     console.log(mail, pass);
   }
 
