@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./signUp.scss";
 import BasicBtn from "../../../components/shared/Basic-btn.js";
 import FormField from "../../../components/shared/FormField.js";
 import { Col, Row } from "react-bootstrap";
