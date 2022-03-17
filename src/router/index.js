@@ -1,23 +1,35 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Error404 from "pages/Error404";
-
+import SignUp from "pages/public/signup";
+// import Dashboard from "pages/private/dashboard";
+import RoutingList from "./routes/index";
+// import { Navigate } from "react-router-dom";
 
 const Router = () => {
-
+  const RoutingListData = [
+    {
+      path: "/",
+      element: <SignUp />
+    }
+  ];
+  console.log(RoutingListData, "checker============");
 
   return (
-
     <BrowserRouter>
-      <Switch>
+      <Routes>
+        <RoutingList RoutingListData={RoutingListData} />
+        {/* Link redirect to /signup */}
+        {/* <Route path="/" element={<Navigate replace to="/signup" />} /> */}
+        {/* Routes for public pages */}
 
 
-        {/* Remove this and Start New Rounting Here */}
+        <Route exact path="/" element={<SignUp />} />
+        {/* <Route exact path="/dashboard" element={<Dashboard />} /> */}
         {/* 404 page route */}
-        <Route exact path="*" component={Error404} />
-      </Switch>
+        <Route path="*" element={<Error404 />} />
+      </Routes>
     </BrowserRouter>
-
   );
 };
 
