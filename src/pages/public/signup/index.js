@@ -18,9 +18,6 @@ const SignUp = () => {
   let navigate = useNavigate();
   function handleSubmit(e) {
     e.preventDefault();
-    // var pattern = new RegExp(
-    //   /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
-    // );
 
     if (!name || !email || !password || !confirmPassword) {
       alert("Please fill all the fields");
@@ -38,7 +35,7 @@ const SignUp = () => {
       localStorage.setItem("Email", JSON.stringify(email));
       localStorage.setItem("Password", JSON.stringify(password));
       localStorage.setItem("Confirm password", JSON.stringify(confirmPassword));
-      alert("Successfully SignUp");
+      alert("Successfully Sign up");
       let path = `/login`;
       navigate(path);
     }
