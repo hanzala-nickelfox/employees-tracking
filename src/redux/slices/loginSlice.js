@@ -10,10 +10,14 @@ const loginSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state.userData = action.payload;
+      console.log(state.userData);
+    },
+    setIsLoggedIn: (state, action) => {
       state.isloggedIn = action.payload;
+      console.log(state.isloggedIn);
     }
   }
 });
 
-export const { login } = loginSlice.actions;
+export const { login, setIsLoggedIn } = loginSlice.actions;
 export default loginSlice.reducer;
