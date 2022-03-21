@@ -10,6 +10,7 @@ const signUpSlice = createSlice({
   reducers: {
     signUp: (state, action) => {
       state.userData = action.payload;
+      console.log(state.userData);
     }
   }
 });
