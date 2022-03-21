@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BasicBtn from "../../../components/shared/Basic-btn.js";
 import { Row, Col } from "react-bootstrap";
 import { Container } from "@mui/material";
@@ -12,17 +12,47 @@ import { useDispatch } from "react-redux";
 import { login, setIsLoggedIn } from "redux/slices/loginSlice.js";
 
 const Login = () => {
-  const [userData, setUserData] = useState({
+  const intialValues = {
     email: "",
     password: ""
-  });
-
+  };
+  const [userData, setUserData] = useState(intialValues);
+  const [globalError, setGlobalError] = useState("");
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
   const { email, password } = userData;
+
   const handleChange = (e) => {
-    setUserData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value
-    }));
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+    userData;
+  };
+
+  useEffect(() => {
+    userData;
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      userData;
+    }
+  }, [formErrors]);
+
+  const validate = (values) => {
+    const mail = localStorage.getItem("Email").replace(/(^"|"$)/g, "");
+    const pass = localStorage.getItem("Password").replace(/(^"|"$)/g, "");
+    const errors = {};
+    if (!values.email) {
+      errors.email = "Email is required";
+    }
+    if (!values.password) {
+      errors.password = "Password is required";
+    }
+    if (values.email !== mail) {
+      errors.email = "Email is not valid";
+    }
+    if (values.password !== pass) {
+      errors.password = "Password is not valid";
+    }
+
+    return errors;
   };
 
   let navigate = useNavigate();
@@ -32,16 +62,13 @@ const Login = () => {
     e.preventDefault();
     dispatch(login({ email, password }));
     dispatch(setIsLoggedIn(true));
+    setFormErrors(validate(userData));
+    setIsSubmit(true);
     const mail = localStorage.getItem("Email").replace(/(^"|"$)/g, "");
     const pass = localStorage.getItem("Password").replace(/(^"|"$)/g, "");
 
-    if (!email || !password) {
-      alert("Please fill all the fields");
-    } else if (email !== mail || password !== pass) {
-      alert("Invalid Email or Password");
-    } else {
-      alert("Successfullt Login");
-      console.log(mail, pass);
+    if (email == mail && password == pass) {
+      setGlobalError(globalError === "" ? "Successfully login" : "");
       let path = `/dashboard`;
       navigate(path);
     }
@@ -49,6 +76,7 @@ const Login = () => {
   return (
     <>
       <Container component="main" maxWidth="xs" className="mt-5">
+        {globalError}
         <Row className="text-center justify-content-center mb-4">
           <Avatar className="mb-4" sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
@@ -68,6 +96,7 @@ const Login = () => {
                 placeholder="Email"
                 onChange={handleChange}
               />
+              <span> {formErrors.email}</span>
             </Col>
             <Col lg={12} className="mb-4">
               <FormField
@@ -78,13 +107,14 @@ const Login = () => {
                 placeholder="Password"
                 onChange={handleChange}
               />
+              <span> {formErrors.password}</span>
             </Col>
             <Col lg={12} className="mb-4">
               <BasicBtn
                 variant="contained"
                 type="submit"
                 onChange={handlelogin}
-                text="Sign Up"></BasicBtn>
+                text="Login"></BasicBtn>
             </Col>
             <Grid container>
               <Grid item xs>
@@ -94,7 +124,7 @@ const Login = () => {
               </Grid>
               <Grid item>
                 <Link to="/" variant="body2">
-                  {"Already have an account? Login"}
+                  {"Haven't an account? Sign up"}
                 </Link>
               </Grid>
             </Grid>

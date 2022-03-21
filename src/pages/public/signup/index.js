@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BasicBtn from "../../../components/shared/Basic-btn.js";
 import FormField from "../../../components/shared/FormField.js";
 import { Col, Row } from "react-bootstrap";
@@ -12,25 +12,67 @@ import { useDispatch } from "react-redux";
 import { signUp } from "redux/slices/signupSlice";
 
 const SignUp = () => {
-  const [formData, setFormData] = useState({
+  const intialValues = {
     name: "",
     email: "",
     password: "",
     confirmPassword: ""
-  });
-
-  const [emailError, setEmailError] = useState("");
+  };
+  const [formData, setFormData] = useState(intialValues);
   const [globalError, setGlobalError] = useState("");
-  const [nameError, setNameError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [cmPasswordError, setCmPasswordError] = useState("");
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
   const { name, email, password, confirmPassword } = formData;
 
   const handleChange = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value
-    }));
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    formData;
+  };
+
+  useEffect(() => {
+    formData;
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      formData;
+    }
+  }, [formErrors]);
+
+  const validate = (values) => {
+    const errors = {};
+    if (!values.name) {
+      errors.name = "Name is required";
+    }
+    if (!values.email) {
+      errors.email = "Email is required";
+    }
+    if (!values.password) {
+      errors.password = "Password is required";
+    }
+    if (!values.confirmPassword) {
+      errors.confirmPassword = "Confirm Password is required";
+    }
+    if (values.password.length < 4 && values.password.length > 1) {
+      errors.password = "Password must be at least 4 characters";
+    }
+    if (
+      values.confirmPassword.length < 4 &&
+      values.confirmPassword.length > 1
+    ) {
+      errors.confirmPassword = "Password must be at least 4 characters";
+    }
+    if (password !== confirmPassword) {
+      errors.password = "Password and Confirm Password does not match";
+      errors.confirmPassword = "Password and Confirm Password does not match";
+    }
+    if (name.length < 4 && name.length > 1) {
+      errors.name = "Name must be at least 4 characters";
+    }
+
+    if (email.length > 2 && !email.includes("@") && !email.includes(".")) {
+      errors.email = "Please fill valid email id";
+    }
+
+    return errors;
   };
 
   let navigate = useNavigate();
@@ -38,34 +80,10 @@ const SignUp = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!name || !email || !password || !confirmPassword) {
-      setGlobalError(
-        globalError === ""
-          ? "Please fill all the fields"
-          : "Please fill all the fields"
-      );
-    } else if (name.length < 3) {
-      setNameError(
-        nameError === "" ? "Name must be at least 3 characters" : ""
-      );
-    }
-    if (!email.includes("@") && !email.includes(".")) {
-      if (email.length > 3 && !email.includes("@") && !email.includes(".")) {
-        setEmailError(emailError === "" ? "Please fill email id" : "");
-      } else {
-        // setEmailError(emailError === "" ? "" : "");
-      }
-    } else if (password !== confirmPassword) {
-      setCmPasswordError(
-        cmPasswordError === ""
-          ? "Password and Confirm Password does not match"
-          : ""
-      );
-    } else if (password.length < 4) {
-      setPasswordError(
-        passwordError === "" ? "Password must be at least 4" : ""
-      );
-    } else {
+    setFormErrors(validate(formData));
+    setIsSubmit(true);
+
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
       localStorage.setItem("Name", JSON.stringify(name));
       localStorage.setItem("Email", JSON.stringify(email));
       localStorage.setItem("Password", JSON.stringify(password));
@@ -77,60 +95,30 @@ const SignUp = () => {
     }
   }
 
-  function handileErrors() {
-    if (globalError) {
-      return (
-        <Grid item xs={12}>
-          <Typography
-            className="text-danger"
-            variant="body1"
-            component="p"
-            gutterBottom>
-            {globalError} nnn
-          </Typography>
-        </Grid>
-      );
-    } else if (nameError) {
-      return (
-        <Grid item xs={12}>
-          <Typography
-            className="text-danger"
-            variant="body1"
-            component="p"
-            gutterBottom>
-            {nameError}
-          </Typography>
-        </Grid>
-      );
-    }
-  }
-
   return (
     <>
       <Container component="main" maxWidth="xs" className="mt-5">
-        {globalError ? <span>{globalError}</span> : null}
+        {globalError}
         <Row className="text-center justify-content-center mb-4">
           <Avatar className="mb-4" sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography className="mb-4" component="h1" variant="h5">
-            Sign in
+            Sign up
           </Typography>
         </Row>
         <Row>
-          <form onSubmit={handleSubmit} 
-          // onChange={handileErrors}
-          >
+          <form onSubmit={handleSubmit}>
             <Col lg={12} className="mb-4">
               <FormField
                 type="text"
                 name="name"
-                value={name}
-                label="Full Name"
+                value={formData.name}
+                label="Name"
                 placeholder="Enter Name"
-                onChange={(handleChange, handileErrors)}
+                onChange={handleChange}
               />
-              {nameError ? <span>{nameError}</span> : null}
+              <span> {formErrors.name}</span>
             </Col>
 
             <Col lg={12} className="mb-4">
@@ -138,34 +126,33 @@ const SignUp = () => {
                 label="Email"
                 type="email"
                 name="email"
-                value={email}
+                value={formData.email}
                 placeholder="Email"
                 onChange={handleChange}
               />
-              {emailError ? <span>{emailError}</span> : null}
+              <span> {formErrors.email}</span>
             </Col>
             <Col lg={12} className="mb-4">
               <FormField
                 type="password"
                 name="password"
-                value={password}
+                value={formData.password}
                 label="Password"
                 placeholder="Password"
                 onChange={handleChange}
               />
-              {passwordError ? <span>{passwordError}</span> : null}
-              {cmPasswordError ? <span>{cmPasswordError}</span> : null}
+              <span> {formErrors.password}</span>
             </Col>
             <Col lg={12} className="mb-4">
               <FormField
                 type="password"
                 name="confirmPassword"
-                value={confirmPassword}
+                value={formData.confirmPassword}
                 label="Confirm Password"
                 placeholder="Confirm password"
                 onChange={handleChange}
               />
-              {cmPasswordError ? <span>{cmPasswordError}</span> : null}
+              <span> {formErrors.confirmPassword}</span>
             </Col>
             <Col lg={12} className="mb-4">
               <BasicBtn
