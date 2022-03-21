@@ -8,42 +8,107 @@ import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { signUp } from "redux/slices/signupSlice";
 
 const SignUp = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
+  });
+
+  const [emailError, setEmailError] = useState("");
+  const [globalError, setGlobalError] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [cmPasswordError, setCmPasswordError] = useState("");
+  const { name, email, password, confirmPassword } = formData;
+
+  const handleChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value
+    }));
+  };
 
   let navigate = useNavigate();
+  const dispatch = useDispatch();
+
   function handleSubmit(e) {
     e.preventDefault();
-
     if (!name || !email || !password || !confirmPassword) {
-      alert("Please fill all the fields");
+      setGlobalError(
+        globalError === ""
+          ? "Please fill all the fields"
+          : "Please fill all the fields"
+      );
     } else if (name.length < 3) {
-      alert("Name must be at least 3 characters");
+      setNameError(
+        nameError === "" ? "Name must be at least 3 characters" : ""
+      );
     }
     if (!email.includes("@") && !email.includes(".")) {
-      alert("Enter a valid email id");
+      if (email.length > 3 && !email.includes("@") && !email.includes(".")) {
+        setEmailError(emailError === "" ? "Please fill email id" : "");
+      } else {
+        // setEmailError(emailError === "" ? "" : "");
+      }
     } else if (password !== confirmPassword) {
-      alert("Password and Confirm Password does not match");
+      setCmPasswordError(
+        cmPasswordError === ""
+          ? "Password and Confirm Password does not match"
+          : ""
+      );
     } else if (password.length < 4) {
-      alert("Password must be at least 4 characters");
+      setPasswordError(
+        passwordError === "" ? "Password must be at least 4" : ""
+      );
     } else {
       localStorage.setItem("Name", JSON.stringify(name));
       localStorage.setItem("Email", JSON.stringify(email));
       localStorage.setItem("Password", JSON.stringify(password));
       localStorage.setItem("Confirm password", JSON.stringify(confirmPassword));
-      alert("Successfully Sign up");
+      setGlobalError(globalError === "" ? "Successfully Signed Up" : "");
       let path = `/login`;
       navigate(path);
+      dispatch(signUp({ name, email, password, confirmPassword }));
+    }
+  }
+
+  function handileErrors() {
+    if (globalError) {
+      return (
+        <Grid item xs={12}>
+          <Typography
+            className="text-danger"
+            variant="body1"
+            component="p"
+            gutterBottom>
+            {globalError} nnn
+          </Typography>
+        </Grid>
+      );
+    } else if (nameError) {
+      return (
+        <Grid item xs={12}>
+          <Typography
+            className="text-danger"
+            variant="body1"
+            component="p"
+            gutterBottom>
+            {nameError}
+          </Typography>
+        </Grid>
+      );
     }
   }
 
   return (
     <>
       <Container component="main" maxWidth="xs" className="mt-5">
+        {globalError ? <span>{globalError}</span> : null}
         <Row className="text-center justify-content-center mb-4">
           <Avatar className="mb-4" sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
@@ -53,42 +118,54 @@ const SignUp = () => {
           </Typography>
         </Row>
         <Row>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} 
+          // onChange={handileErrors}
+          >
             <Col lg={12} className="mb-4">
               <FormField
                 type="text"
+                name="name"
                 value={name}
                 label="Full Name"
                 placeholder="Enter Name"
-                onChange={(e) => setName(e.target.value)}></FormField>
+                onChange={(handleChange, handileErrors)}
+              />
+              {nameError ? <span>{nameError}</span> : null}
             </Col>
+
             <Col lg={12} className="mb-4">
               <FormField
                 label="Email"
                 type="email"
-                name={email}
+                name="email"
+                value={email}
                 placeholder="Email"
-                onChange={(e) => setEmail(e.target.value)}></FormField>
+                onChange={handleChange}
+              />
+              {emailError ? <span>{emailError}</span> : null}
             </Col>
             <Col lg={12} className="mb-4">
               <FormField
                 type="password"
-                name={password}
+                name="password"
                 value={password}
                 label="Password"
                 placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}></FormField>
+                onChange={handleChange}
+              />
+              {passwordError ? <span>{passwordError}</span> : null}
+              {cmPasswordError ? <span>{cmPasswordError}</span> : null}
             </Col>
             <Col lg={12} className="mb-4">
               <FormField
                 type="password"
-                name={confirmPassword}
+                name="confirmPassword"
                 value={confirmPassword}
                 label="Confirm Password"
                 placeholder="Confirm password"
-                onChange={(e) =>
-                  setConfirmPassword(e.target.value)
-                }></FormField>
+                onChange={handleChange}
+              />
+              {cmPasswordError ? <span>{cmPasswordError}</span> : null}
             </Col>
             <Col lg={12} className="mb-4">
               <BasicBtn

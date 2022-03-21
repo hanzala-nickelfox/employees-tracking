@@ -8,20 +8,36 @@ import Typography from "@mui/material/Typography";
 import FormField from "../../../components/shared/FormField";
 import Grid from "@mui/material/Grid";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login, setIsLoggedIn } from "redux/slices/loginSlice.js";
 
 const Login = () => {
-  const [emaillog, setEmaillog] = useState("");
-  const [passwordlog, setPasswordlog] = useState("");
+  const [userData, setUserData] = useState({
+    email: "",
+    password: ""
+  });
+
+  const { email, password } = userData;
+  const handleChange = (e) => {
+    setUserData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value
+    }));
+  };
+
   let navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function handlelogin(e) {
     e.preventDefault();
+    dispatch(login({ email, password }));
+    dispatch(setIsLoggedIn(true));
     const mail = localStorage.getItem("Email").replace(/(^"|"$)/g, "");
     const pass = localStorage.getItem("Password").replace(/(^"|"$)/g, "");
 
-    if (!emaillog || !passwordlog) {
+    if (!email || !password) {
       alert("Please fill all the fields");
-    } else if (emaillog !== mail || passwordlog !== pass) {
+    } else if (email !== mail || password !== pass) {
       alert("Invalid Email or Password");
     } else {
       alert("Successfullt Login");
@@ -30,7 +46,6 @@ const Login = () => {
       navigate(path);
     }
   }
-
   return (
     <>
       <Container component="main" maxWidth="xs" className="mt-5">
@@ -48,19 +63,21 @@ const Login = () => {
               <FormField
                 label="Email"
                 type="email"
-                name={emaillog}
-                value={emaillog}
+                name="email"
+                value={email}
                 placeholder="Email"
-                onChange={(e) => setEmaillog(e.target.value)}></FormField>
+                onChange={handleChange}
+              />
             </Col>
             <Col lg={12} className="mb-4">
               <FormField
                 type="password"
-                name={passwordlog}
-                value={passwordlog}
+                name="password"
+                value={password}
                 label="Password"
                 placeholder="Password"
-                onChange={(e) => setPasswordlog(e.target.value)}></FormField>
+                onChange={handleChange}
+              />
             </Col>
             <Col lg={12} className="mb-4">
               <BasicBtn
