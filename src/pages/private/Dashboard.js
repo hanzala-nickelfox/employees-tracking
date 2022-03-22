@@ -15,6 +15,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Home from "@mui/icons-material/Home";
+import Activities from '@mui/icons-material/Rowing';
 import Settings from "@mui/icons-material/Settings";
 import MenuIcon from "@mui/icons-material/Menu";
 import Avatar from "@mui/material/Avatar";
@@ -81,7 +82,7 @@ const Dashboard = () => {
     },
     {
       itemName: "Activities",
-      icon: <Settings />
+      icon: <Activities />
     },
     {
       itemName: "Settings",
