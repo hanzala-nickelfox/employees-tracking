@@ -2,7 +2,14 @@ import * as React from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Drawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
-import List from "@mui/material/List";
+// import List from "@mui/material/List";
+// import ListItem from "@mui/material/ListItem";
+// import ListItemIcon from "@mui/material/ListItemIcon";
+// import ListItemText from "@mui/material/ListItemText";
+// import Home from "@mui/icons-material/Home";
+// import Activities from '@mui/icons-material/Rowing';
+// import Settings from "@mui/icons-material/Settings";
+import MenuList from "./menuList";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Divider from "@mui/material/Divider";
@@ -10,12 +17,6 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import Home from "@mui/icons-material/Home";
-import Activities from '@mui/icons-material/Rowing';
-import Settings from "@mui/icons-material/Settings";
 import MenuIcon from "@mui/icons-material/Menu";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
@@ -74,20 +75,20 @@ const Dashboard = () => {
     setOpen(false);
   };
 
-  const menuList = [
-    {
-      itemName: "Home",
-      icon: <Home />
-    },
-    {
-      itemName: "Activities",
-      icon: <Activities />
-    },
-    {
-      itemName: "Settings",
-      icon: <Settings />
-    }
-  ];
+  // const menuList = [
+  //   {
+  //     itemName: "Home",
+  //     icon: <Home />
+  //   },
+  //   {
+  //     itemName: "Activities",
+  //     icon: <Activities />
+  //   },
+  //   {
+  //     itemName: "Settings",
+  //     icon: <Settings />
+  //   }
+  // ];
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -156,14 +157,7 @@ const Dashboard = () => {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
-          {menuList.map((menuList, idx) => (
-            <ListItem button key={idx}>
-              <ListItemIcon>{menuList.icon}</ListItemIcon>
-              <ListItemText primary={menuList.itemName} />
-            </ListItem>
-          ))}
-        </List>
+        <MenuList />
       </Drawer>
     </Box>
   );
