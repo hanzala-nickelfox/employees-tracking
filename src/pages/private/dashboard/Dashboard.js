@@ -1,6 +1,5 @@
 import * as React from "react";
 import { styled, useTheme } from "@mui/material/styles";
-
 import Drawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
@@ -75,7 +74,7 @@ const Dashboard = () => {
     setOpen(false);
   };
 
-  const useListData = [
+  const menuList = [
     {
       itemName: "Home",
       icon: <Home />
@@ -158,10 +157,10 @@ const Dashboard = () => {
         </DrawerHeader>
         <Divider />
         <List>
-          {useListData.map((useListData, idx) => (
+          {menuList.map((menuList, idx) => (
             <ListItem button key={idx}>
-              <ListItemIcon>{useListData.icon}</ListItemIcon>
-              <ListItemText primary={useListData.itemName} />
+              <ListItemIcon>{menuList.icon}</ListItemIcon>
+              <ListItemText primary={menuList.itemName} />
             </ListItem>
           ))}
         </List>

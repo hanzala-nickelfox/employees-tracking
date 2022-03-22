@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Error404 from "pages/Error404";
 import SignUp from "pages/public/signup";
 import Login from "pages/public/login";
-import Dashboard from "pages/private/Dashboard.js";
+import Dashboard from "pages/private/dashboard/Dashboard.js";
 import { Navigate } from "react-router";
 
 const Router = () => {
