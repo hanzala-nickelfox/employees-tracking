@@ -2,13 +2,6 @@ import * as React from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Drawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
-// import List from "@mui/material/List";
-// import ListItem from "@mui/material/ListItem";
-// import ListItemIcon from "@mui/material/ListItemIcon";
-// import ListItemText from "@mui/material/ListItemText";
-// import Home from "@mui/icons-material/Home";
-// import Activities from '@mui/icons-material/Rowing';
-// import Settings from "@mui/icons-material/Settings";
 import MenuList from "./menuList";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -75,20 +68,6 @@ const Dashboard = () => {
     setOpen(false);
   };
 
-  // const menuList = [
-  //   {
-  //     itemName: "Home",
-  //     icon: <Home />
-  //   },
-  //   {
-  //     itemName: "Activities",
-  //     icon: <Activities />
-  //   },
-  //   {
-  //     itemName: "Settings",
-  //     icon: <Settings />
-  //   }
-  // ];
 
   return (
     <Box sx={{ display: "flex" }}>
