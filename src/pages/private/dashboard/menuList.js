@@ -6,6 +6,8 @@ import ListItemText from "@mui/material/ListItemText";
 import Home from "@mui/icons-material/Home";
 import Activities from "@mui/icons-material/Rowing";
 import Settings from "@mui/icons-material/Settings";
+import Logout from "@mui/icons-material/Logout";
+import Notifications from "@mui/icons-material/Notifications";
 
 function menuList() {
   const menuList = [
@@ -18,8 +20,16 @@ function menuList() {
       icon: <Activities />
     },
     {
+      itemName: "Notifications",
+      icon: <Notifications />
+    },
+    {
       itemName: "Settings",
       icon: <Settings />
+    },
+    {
+      itemName: "Logout",
+      icon: <Logout />
     }
   ];
 
