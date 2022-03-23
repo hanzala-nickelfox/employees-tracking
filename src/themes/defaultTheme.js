@@ -4,7 +4,7 @@ export const defaultTheme = {
             main: '#5048E5',
         },
         secondary: {
-            main: "#121828"
+            main: "#3980c3"
         },
         background: {
             default: "#FFFFFF"
