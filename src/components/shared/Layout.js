@@ -82,6 +82,7 @@ const AppBar = styled(MuiAppBar, {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
     }),
+
     ...(open && {
         width: `calc(100% - ${drawerWidth}px)`,
         marginLeft: `${drawerWidth}px`,
@@ -117,7 +118,7 @@ const Layout = (props) => {
 
     return (
         <React.Fragment>
-            <AppBar position="fixed" open={props.open}>
+            <AppBar color='secondary' position="fixed" open={props.open}>
                 <Toolbar>
                     <IconButton
                         color="inherit"
@@ -163,7 +164,7 @@ const Layout = (props) => {
                 </Toolbar>
             </AppBar>
             <Drawer variant="permanent" open={props.open}>
-                <DrawerHeader>
+                <DrawerHeader >
                     <IconButton onClick={handleDrawerClose}>
                         {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
