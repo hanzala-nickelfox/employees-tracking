@@ -8,28 +8,34 @@ import Activities from "@mui/icons-material/Rowing";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import Notifications from "@mui/icons-material/Notifications";
+import { NavLink } from "react-router-dom";
 
-function menuList() {
+function MenuList() {
   const menuList = [
     {
       itemName: "Home",
-      icon: <Home />
+      icon: <Home />,
+      ItemLink: "/dashboard"
     },
     {
       itemName: "Activities",
-      icon: <Activities />
+      icon: <Activities />,
+      ItemLink: "/activities"
     },
     {
       itemName: "Notifications",
-      icon: <Notifications />
+      icon: <Notifications />,
+      ItemLink: "/notifications"
     },
     {
       itemName: "Settings",
-      icon: <Settings />
+      icon: <Settings />,
+      ItemLink: "/settings"
     },
     {
       itemName: "Logout",
-      icon: <Logout />
+      icon: <Logout />,
+      ItemLink: "/logout"
     }
   ];
 
@@ -37,7 +43,7 @@ function menuList() {
     <>
       <List>
         {menuList.map((menuList, idx) => (
-          <ListItem button key={idx}>
+          <ListItem component={NavLink} to={menuList.ItemLink} button key={idx}>
             <ListItemIcon>{menuList.icon}</ListItemIcon>
             <ListItemText primary={menuList.itemName} />
           </ListItem>
@@ -47,4 +53,4 @@ function menuList() {
   );
 }
 
-export default menuList;
+export default MenuList;
