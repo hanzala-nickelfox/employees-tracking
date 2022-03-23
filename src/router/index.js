@@ -1,11 +1,29 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { styled } from "@mui/material/styles";
 import Error404 from "pages/Error404";
 import SignUp from "pages/public/signup";
 import Login from "pages/public/login";
-import Dashboard from "pages/private/dashboard/Dashboard";
+import DashboardLayout from "pages/private/dashboardLayout/DashboardLayout";
+import Home from "../pages/private/Dashboard/Dashboard";
 import Activities from "pages/private/Activities/Activities";
 import { Navigate } from "react-router";
+
+const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
+  ({ theme, open }) => ({
+    transition: theme.transitions.create("margin", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen
+    }),
+    marginLeft: "110px",
+    ...(open && {
+      transition: theme.transitions.create("margin", {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen
+      })
+    })
+  })
+);
 
 const Router = () => {
   const [isLoggedIn] = useState(true);
@@ -14,10 +32,14 @@ const Router = () => {
     <BrowserRouter>
       {isLoggedIn ? (
         <>
-          <Dashboard />
+          <DashboardLayout />
+          <Main>
             <Routes>
+              <Route path="/dashboard" element={<Home />} />
               <Route path="/activities" element={<Activities />} />
+              <Route path="*" element={<Error404 />} />
             </Routes>
+          </Main>
         </>
       ) : (
         <>

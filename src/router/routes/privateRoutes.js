@@ -1,6 +1,6 @@
 // Export all the private routes
 
-import Dashboard from "pages/private/dashboard/Dashboard";
+import Dashboard from "pages/private/Dashboard-Old";
 
 
 export const PrivateRoutes = [
