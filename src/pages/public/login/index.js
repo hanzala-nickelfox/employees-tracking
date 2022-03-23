@@ -9,8 +9,7 @@ import FormField from "../../../components/shared/FormField";
 import Grid from "@mui/material/Grid";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { login, setIsLoggedIn } from "redux/slices/loginSlice.js";
-
+import { signin as signinAction } from "../../../redux/users/actions";
 const Login = () => {
   const intialValues = {
     email: "",
@@ -60,8 +59,9 @@ const Login = () => {
 
   function handlelogin(e) {
     e.preventDefault();
-    dispatch(login({ email, password }));
-    dispatch(setIsLoggedIn(true));
+    // dispatch(login({ email, password }));
+    // dispatch(setIsLoggedIn(true));
+    dispatch(signinAction({ email, password }));
     setFormErrors(validate(userData));
     setIsSubmit(true);
     const mail = localStorage.getItem("Email").replace(/(^"|"$)/g, "");

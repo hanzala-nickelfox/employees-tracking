@@ -9,7 +9,7 @@ import { Container } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { signUp } from "redux/slices/signupSlice";
+import { signup as signupAction } from "../../../redux/users/actions";
 
 const SignUp = () => {
   const intialValues = {
@@ -91,7 +91,7 @@ const SignUp = () => {
       setGlobalError(globalError === "" ? "Successfully Signed Up" : "");
       let path = `/login`;
       navigate(path);
-      dispatch(signUp({ name, email, password, confirmPassword }));
+      dispatch(signupAction({ name, email, password, confirmPassword }));
     }
   }
 
