@@ -5,7 +5,7 @@ import Error404 from "pages/Error404";
 import SignUp from "pages/public/signup";
 import Login from "pages/public/login";
 import DashboardLayout from "pages/private/dashboardLayout/DashboardLayout";
-import Home from "../pages/private/Dashboard/Dashboard";
+import Dashboard from "../pages/private/Dashboard/Dashboard";
 import Activities from "pages/private/Activities/Activities";
 import { Navigate } from "react-router";
 
@@ -35,7 +35,7 @@ const Router = () => {
           <DashboardLayout />
           <Main>
             <Routes>
-              <Route path="/dashboard" element={<Home />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/activities" element={<Activities />} />
               <Route path="*" element={<Error404 />} />
             </Routes>
@@ -44,26 +44,23 @@ const Router = () => {
       ) : (
         <>
           <Routes>
-            {/* Link redirect to /signup */}
             <Route path="/" element={<Navigate to="/signup" replace />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
-            {/* 404 page route */}
+
             <Route path="*" element={<Error404 />} />
           </Routes>
         </>
       )}
 
-      {/* <Routes> */}
-      {/* Link redirect to /signup */}
-      {/* <Route path="/" element={<Navigate to="/signup" replace />} /> */}
+      {/* <Routes>
 
-      {/* <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<Login />} /> */}
+        <Route path="/" element={<Navigate to="/signup" replace />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
 
-      {/* 404 page route */}
-      {/* <Route path="*" element={<Error404 />} /> */}
-      {/* </Routes> */}
+        <Route path="*" element={<Error404 />} />
+      </Routes> */}
     </BrowserRouter>
   );
 };
