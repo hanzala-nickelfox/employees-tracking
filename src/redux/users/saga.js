@@ -48,8 +48,10 @@ export function* signin(action) {
       email,
       password
     );
-    if (userCredentials.user) {
+    const user = userCredentials.user;
+    if (user) {
       //logs if user exists
+      localStorage.setItem("token", user.accessToken);
       console.log("success");
       yield put(setUserData(data));
       yield put(setIsLoggedIn(true));
