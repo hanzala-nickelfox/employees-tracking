@@ -4,27 +4,22 @@ import Error404 from "pages/Error404";
 import SignUp from "pages/public/signup";
 import Login from "pages/public/login";
 import DashboardLayout from "../pages/private/dashboardLayout/DashboardLayout";
+import AuthWrapper from "HOC/AuthWrapper";
 import { Navigate } from "react-router";
-
-const isLoggedIn = localStorage.getItem("isLoggedIn");
-console.warn(isLoggedIn, "isLoggedIn =   checker========================")
 const Router = () => {
   return (
     <BrowserRouter>
-      {isLoggedIn ? (
-        <>
-          <DashboardLayout />
-        </>
-      ) : (
-        <>
-          <Routes>
-            <Route path="/" element={<Navigate to="/signup" replace />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="*" element={<Error404 />} />
-          </Routes>
-        </>
-      )}
+      <Routes>
+        {/* Link redirect to /signup */}
+        <Route path="/" element={<Navigate to="/signup" replace />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
+        <Route element={<AuthWrapper />}>
+          <Route path="/dashboard" element={<DashboardLayout />} />
+        </Route>
+        {/* 404 page route */}
+        <Route path="*" element={<Error404 />} />
+      </Routes>
     </BrowserRouter>
   );
 };
