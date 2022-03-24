@@ -88,6 +88,7 @@ const SignUp = () => {
       localStorage.setItem("Email", JSON.stringify(email));
       localStorage.setItem("Password", JSON.stringify(password));
       localStorage.setItem("Confirm password", JSON.stringify(confirmPassword));
+      // localStorage.setItem("isLoggedIn", JSON.stringify(true));
       setGlobalError(globalError === "" ? "Successfully Signed Up" : "");
       let path = `/login`;
       navigate(path);
