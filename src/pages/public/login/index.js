@@ -68,9 +68,9 @@ const Login = () => {
     if (email == mail && password == pass) {
       setGlobalError(globalError === "" ? "Successfully login" : "");
       localStorage.setItem("isLoggedIn", JSON.stringify(true));
-      window.location.reload(false);
       let path = `/dashboard`;
       navigate(path);
+      window.location.reload(false);
     }
   }
   return (
