@@ -70,6 +70,7 @@ const Login = () => {
       localStorage.setItem("isLoggedIn", JSON.stringify(true));
       let path = `/dashboard`;
       navigate(path);
+      window.location.reload(false);
     }
   }
   return (
