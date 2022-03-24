@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import Layout from "../../../components/shared/Layout";
 import { useState } from "react";
+import DashboardBody from "../../../components/shared/PrivateBody";
 
 const drawerWidth = 240;
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -33,7 +34,9 @@ const DashboardLayout = () => {
       <Box sx={{ display: "flex" }}>
         <Layout open={open} setOpen={setOpen}></Layout>
       </Box>
-      <Main open={open}></Main>
+      <Main open={open}>
+        <DashboardBody />
+      </Main>
     </>
   );
 };

@@ -11,6 +11,7 @@ import Notifications from "@mui/icons-material/Notifications";
 import { NavLink } from "react-router-dom";
 
 function MenuList() {
+  
   const menuList = [
     {
       itemName: "Home",

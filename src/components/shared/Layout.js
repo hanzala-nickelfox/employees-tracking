@@ -155,7 +155,7 @@ const Layout = (props) => {
       <Drawer variant="permanent" open={props.open}>
         <DrawerHeader>
           <Typography variant="h6" noWrap component="div">
-            Home
+            {props.title}
           </Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (

@@ -21,7 +21,6 @@ const Login = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const { email, password } = userData;
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
@@ -66,9 +65,9 @@ const Login = () => {
     setIsSubmit(true);
     const mail = localStorage.getItem("Email").replace(/(^"|"$)/g, "");
     const pass = localStorage.getItem("Password").replace(/(^"|"$)/g, "");
-
     if (email == mail && password == pass) {
       setGlobalError(globalError === "" ? "Successfully login" : "");
+      localStorage.setItem("isLoggedIn", JSON.stringify(true));
       let path = `/dashboard`;
       navigate(path);
     }
