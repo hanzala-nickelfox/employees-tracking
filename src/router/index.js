@@ -7,7 +7,7 @@ import DashboardLayout from "../pages/private/dashboardLayout/DashboardLayout";
 import { Navigate } from "react-router";
 
 const isLoggedIn = localStorage.getItem("isLoggedIn");
-
+console.warn(isLoggedIn, "isLoggedIn =   checker========================")
 const Router = () => {
   return (
     <BrowserRouter>
