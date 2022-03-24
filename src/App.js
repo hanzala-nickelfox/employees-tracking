@@ -18,15 +18,10 @@ if (window.safari) {
 
 function App() {
   const currentTheme = createTheme(defaultTheme);
-
-
-
   return (
-
     <ThemeProvider theme={currentTheme}>
       <AppRouter />
     </ThemeProvider>
-
   );
 }
 

@@ -6,7 +6,6 @@ import Login from "pages/public/login";
 import Dashboard from "pages/private/Dashboard.js";
 import AuthWrapper from "HOC/AuthWrapper";
 import { Navigate } from "react-router";
-
 const Router = () => {
   return (
     <BrowserRouter>

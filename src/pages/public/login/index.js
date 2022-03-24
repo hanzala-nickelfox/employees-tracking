@@ -8,10 +8,14 @@ import Typography from "@mui/material/Typography";
 import FormField from "../../../components/shared/FormField";
 import Grid from "@mui/material/Grid";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signin as signinAction } from "../../../redux/users/actions";
 
 const Login = () => {
+  const { isloggedIn } = useSelector((state) => state.userReducer);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const intialValues = {
     email: "",
     password: ""
@@ -47,21 +51,24 @@ const Login = () => {
     return errors;
   };
 
-  let navigate = useNavigate();
-  const dispatch = useDispatch();
+  useEffect(() => {
+    if (isloggedIn) {
+      const token = localStorage.getItem("token");
+      if (token) {
+        setGlobalError(globalError === "" ? "Successfully login" : "");
+        const path = `/dashboard`;
+        navigate(path);
+      }
+    } else {
+      navigate("/login");
+    }
+  }, [isloggedIn]);
 
   function handlelogin(e) {
     e.preventDefault();
     dispatch(signinAction({ email, password }));
     setFormErrors(validate(userData));
     setIsSubmit(true);
-
-    const token = localStorage.getItem("token");
-    if (token) {
-      setGlobalError(globalError === "" ? "Successfully login" : "");
-      let path = `/dashboard`;
-      navigate(path);
-    }
   }
   return (
     <>

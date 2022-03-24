@@ -5,12 +5,7 @@ import { useIsLoggedIn } from "hooks/useAuth";
 const AuthWrapper = ({ children }) => {
   const { isloggedin } = useIsLoggedIn();
   console.log(isloggedin);
-
-  return isloggedin === true ? (
-    <Outlet>{children}</Outlet>
-  ) : (
-    <Navigate to="/login" />
-  );
+  return isloggedin ? <Outlet>{children}</Outlet> : <Navigate to="/login" />;
 };
 
 export default AuthWrapper;

@@ -49,12 +49,14 @@ export function* signin(action) {
       password
     );
     const user = userCredentials.user;
-    if (user) {
+    if (!user) {
+      console.log("Invalid User or Credentials");
+    } else {
       //logs if user exists
+      yield put(setIsLoggedIn(true));
       localStorage.setItem("token", user.accessToken);
       console.log("success");
       yield put(setUserData(data));
-      yield put(setIsLoggedIn(true));
     }
   } catch (error) {
     console.log(error);
