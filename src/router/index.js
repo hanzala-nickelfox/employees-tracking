@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Error404 from "pages/Error404";
 import SignUp from "pages/public/signup";
 import Login from "pages/public/login";
-import PrivateBody from "../components/shared/PrivateBody";
 import DashboardLayout from "../pages/private/dashboardLayout/DashboardLayout";
 import { Navigate } from "react-router";
 
@@ -15,7 +14,6 @@ const Router = () => {
       {isLoggedIn ? (
         <>
           <DashboardLayout />
-          <PrivateBody />
         </>
       ) : (
         <>

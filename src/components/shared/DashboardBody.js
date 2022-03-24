@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Activities from "pages/private/Activities/Activities";
 import Error404 from "pages/Error404";
 
-function PrivateBody() {
+function DashboardBody() {
   
   return (
     <>
@@ -17,4 +17,4 @@ function PrivateBody() {
   );
 }
 
-export default PrivateBody;
+export default DashboardBody;

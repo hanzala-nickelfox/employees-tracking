@@ -16,7 +16,7 @@ import Tooltip from "@mui/material/Tooltip";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useState } from "react";
-import DashboardBody from "./PrivateBody";
+import DashboardBody from "./DashboardBody";
 
 const drawerWidth = 240;
 
