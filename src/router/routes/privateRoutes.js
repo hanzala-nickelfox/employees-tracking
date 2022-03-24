@@ -1,9 +1,23 @@
-// Export all the private routes
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import DashboardLayout from "pages/private/dashboardLayout/DashboardLayout";
+import AuthWrapper from "HOC/AuthWrapper";
+import Dashboard from "pages/private/dashboard/Dashboard";
+import Activities from "pages/private/Activities/Activities";
 
-import Dashboard from "pages/private/Dashboard-Old";
-
-
-export const PrivateRoutes = [
-  { path: "/u/dashboard", exact: true, component: Dashboard },
-
-];
+const PrivateRoutes = () => {
+  return (
+    <>
+      <DashboardLayout />
+      <Routes>
+        <Route element={<AuthWrapper />}>
+          <Route path="/dashboard">
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="activities" element={<Activities />} />
+          </Route>
+        </Route>
+      </Routes>
+    </>
+  );
+};
+export default PrivateRoutes;
