@@ -16,8 +16,9 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useState } from "react";
 import MenuList from "./MenuList";
+import { getAuth } from "firebase/auth";
 
-const drawerWidth = 240;
+const drawerWidth = 220;
 const settings = ["Profile", "Account", "Logout"];
 
 const openedMixin = (theme) => ({
@@ -88,6 +89,9 @@ const AppBar = styled(MuiAppBar, {
 
 const Layout = (props) => {
   const theme = useTheme();
+  const auth = getAuth();
+  const user = auth.currentUser.displayName;
+  const initialChar = user.charAt(0);
 
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -126,7 +130,7 @@ const Layout = (props) => {
           <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "end" }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={initialChar} src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu

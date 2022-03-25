@@ -9,13 +9,12 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import Notifications from "@mui/icons-material/Notifications";
 import { NavLink, Outlet } from "react-router-dom";
-
 function MenuList() {
   const menuList = [
     {
       itemName: "Home",
       icon: <Home />,
-      ItemLink: "dashboard"
+      ItemLink: "dash"
     },
     {
       itemName: "Activities",
@@ -30,7 +29,7 @@ function MenuList() {
     {
       itemName: "Settings",
       icon: <Settings />,
-      ItemLink: "dashboard/settings"
+      ItemLink: "settings"
     },
     {
       itemName: "Logout",

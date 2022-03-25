@@ -3,19 +3,21 @@ import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import Layout from "../../../components/shared/Layout";
 import { useState } from "react";
-import DashboardBody from "../../../components/shared/DashboardBody";
-
+import { Outlet } from "react-router-dom";
 const drawerWidth = 240;
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(6),
+
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
     marginTop: "64px",
-    marginLeft: "64px",
+    marginLeft: "110px",
+    paddingLeft: "110px",
+    backgroundColor: "red",
     ...(open && {
       transition: theme.transitions.create("margin", {
         easing: theme.transitions.easing.easeOut,
@@ -34,8 +36,8 @@ const DashboardLayout = () => {
       <Box sx={{ display: "flex" }}>
         <Layout open={open} setOpen={setOpen} />
       </Box>
-      <Main open={open}>
-        <DashboardBody />
+      <Main>
+        <Outlet />
       </Main>
     </>
   );

@@ -10,9 +10,8 @@ const PrivateRoutes = () => {
     <>
       <DashboardLayout />
       <Routes>
-        <Route element={<AuthWrapper />}>
-          <Route path="/dashboard">
-            <Route path="dashboard" element={<Dashboard />} />
+        <Route path="" element={<AuthWrapper />}>
+          <Route path="/dashboard" element={<Dashboard />}>
             <Route path="activities" element={<Activities />} />
           </Route>
         </Route>
