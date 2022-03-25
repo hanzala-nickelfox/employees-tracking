@@ -21,7 +21,7 @@ function MenuList() {
     {
       itemName: "Activities",
       icon: <Activities />,
-      ItemLink: "/activities"
+      ItemLink: "/activities/projects"
     },
     {
       itemName: "Notifications",
