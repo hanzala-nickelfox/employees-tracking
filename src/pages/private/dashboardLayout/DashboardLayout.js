@@ -32,7 +32,7 @@ const DashboardLayout = () => {
   return (
     <>
       <Box sx={{ display: "flex" }}>
-        <Layout open={open} setOpen={setOpen}></Layout>
+        <Layout open={open} setOpen={setOpen} />
       </Box>
       <Main open={open}>
         <DashboardBody />

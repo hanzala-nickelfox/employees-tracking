@@ -119,6 +119,7 @@ const Layout = (props) => {
             sx={{ mr: 2, ...(props.open && { display: "none" }) }}>
             <MenuIcon />
           </IconButton>
+
           <Typography variant="h6" noWrap component="div">
             Employee Tracking
           </Typography>
