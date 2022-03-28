@@ -8,13 +8,13 @@ import Activities from "@mui/icons-material/Rowing";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import Notifications from "@mui/icons-material/Notifications";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 function MenuList() {
   const menuList = [
     {
       itemName: "Home",
       icon: <Home />,
-      ItemLink: "dash"
+      ItemLink: "home"
     },
     {
       itemName: "Activities",
@@ -52,7 +52,6 @@ function MenuList() {
           );
         })}
       </List>
-      <Outlet />
     </>
   );
 }

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { NavLink } from "react-router-dom";
-
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
 export default function DisabledTabs() {
   const menuList = [
     {
@@ -28,8 +29,10 @@ export default function DisabledTabs() {
       <div style={style}>
         {menuList.map((item) => {
           return (
-            <NavLink key={`item/${item.ItemLink}`} to={item.ItemLink}>
-              {item.itemName}
+            <NavLink key={`path-${item.ItemLink}`} to={item.ItemLink}>
+            <ListItem button>
+                <ListItemText primary={item.itemName} />
+              </ListItem>
             </NavLink>
           );
         })}

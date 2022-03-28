@@ -55,7 +55,6 @@ export function* signin(action) {
       //logs if user exists
       yield put(setIsLoggedIn(true));
       localStorage.setItem("token", user.accessToken);
-      console.log("success");
       yield put(setUserData(data));
     }
   } catch (error) {

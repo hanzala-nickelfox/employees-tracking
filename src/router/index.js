@@ -14,13 +14,12 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         {/* Link redirect to /signup */}
-        <Route path="/" element={<Navigate to="/signup" replace />} />
+        <Route path="/" element={<Navigate to="/signup" />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="login" element={<Login />} />
         <Route element={<AuthWrapper />}>
           <Route path="dashboard/*" element={<Dashboard />}>
             <Route path="activities" element={<Activities />} />
-            <Route path="*" element={<Error404 />} />
           </Route>
         </Route>
         {/* 404 page route */}
