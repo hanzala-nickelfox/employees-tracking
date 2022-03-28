@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Activities from "../Activities/Activities";
 import DashboardLayout from "pages/private/dashboardLayout/DashboardLayout";
 import SubMenu from "components/shared/SubMenu";
@@ -20,8 +20,9 @@ function Dashboard() {
       <SubMenu />
       <Routes>
         <Route path="/" element={<h1>Hello</h1>} />
+        <Route path="home" element={<Navigate to="/dashboard" />} />
         <Route path="activities/*" element={<Activities />} />
-        <Route path="projects" element={<Projects />} />
+        <Route path="projects/*" element={<Projects />} />
         <Route path="learning" element={<Learning />} />
         <Route path="festivals" element={<Festivals />} />
         <Route path="personal" element={<Personal />} />

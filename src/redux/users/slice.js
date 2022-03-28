@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   userData: {},
-  isloggedIn: false
+  isloggedIn: false,
+  isOpen: false
 };
 
 const userSlice = createSlice({
@@ -14,9 +15,12 @@ const userSlice = createSlice({
     },
     setIsLoggedIn: (state, action) => {
       state.isloggedIn = action.payload;
+    },
+    setIsOpen: (state, action) => {
+      state.isOpen = action.payload;
     }
   }
 });
 
-export const { setUserData, setIsLoggedIn } = userSlice.actions;
+export const { setUserData, setIsLoggedIn, setIsOpen } = userSlice.actions;
 export default userSlice.reducer;

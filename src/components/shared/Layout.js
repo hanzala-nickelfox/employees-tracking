@@ -1,4 +1,8 @@
 import * as React from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getAuth } from "firebase/auth";
+import { setIsOpen } from "redux/users/slice";
 import { styled, useTheme } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
@@ -14,9 +18,7 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { useState } from "react";
 import MenuList from "./MenuList";
-import { getAuth } from "firebase/auth";
 
 const drawerWidth = 220;
 const settings = ["Profile", "Account", "Logout"];
@@ -92,7 +94,7 @@ const Layout = (props) => {
   const auth = getAuth();
   const user = auth.currentUser.displayName;
   const initialChar = user.charAt(0);
-
+  const dispatch = useDispatch();
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenUserMenu = (event) => {
@@ -105,10 +107,12 @@ const Layout = (props) => {
 
   const handleDrawerOpen = () => {
     props.setOpen(true);
+    dispatch(setIsOpen(true));
   };
 
   const handleDrawerClose = () => {
     props.setOpen(false);
+    dispatch(setIsOpen(false));
   };
 
   return (

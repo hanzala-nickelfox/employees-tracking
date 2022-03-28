@@ -1,10 +1,11 @@
 import * as React from "react";
+import { NavLink } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 export default function BasicCard({ ActiveProjects }) {
   return (
@@ -43,7 +44,11 @@ export default function BasicCard({ ActiveProjects }) {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small">Learn More</Button>
+              <NavLink to={projectData.title.replace(/\s/g, "").toLowerCase()}>
+                <Button variant="primary" underline="none">
+                  <Typography>Details</Typography>
+                </Button>
+              </NavLink>
             </CardActions>
           </Card>
         ))}
