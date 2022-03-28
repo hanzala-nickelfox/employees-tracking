@@ -26,9 +26,11 @@ export default function BasicCard({ ActiveProjects }) {
                 gutterBottom>
                 {projectData.status}
               </Typography>
+
               <Typography variant="h5" component="div">
                 {projectData.title}
               </Typography>
+
               <Typography sx={{ mb: 1.5 }} color="text.secondary">
                 Progress: {projectData.progress}
               </Typography>
@@ -37,14 +39,19 @@ export default function BasicCard({ ActiveProjects }) {
                 <br />
                 <br />
               </Typography>
+
               <Typography sx={{ mb: 1.5 }} color="text.secondary">
                 StartDate - {projectData.startDate}
                 <br />
                 EndDate - {projectData.endDate}
               </Typography>
             </CardContent>
+
             <CardActions>
               <Button
+                style={{
+                  backgroundColor: "30px"
+                }}
                 variant="contained"
                 color="secondary"
                 role="button"
