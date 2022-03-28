@@ -1,37 +1,31 @@
-import React, { Suspense } from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import { AuthContext } from "../auth/AuthContext";
-import { PrivateRoutes, PublicRoutes } from "./routes";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Error404 from "pages/Error404";
-import AppLoader from "components/Loader/AppLoader";
-import PublicWrapper from "../hoc/PublicWrapper";
-import AuthWrapper from "../hoc/AuthWrapper";
-import { useIsLoggedIn } from "hooks";
+import Dashboard from "pages/private/dashboard/Dashboard";
+import Activities from "pages/private/Activities/Activities";
+import SignUp from "pages/public/signup";
+import Login from "pages/public/login";
+import AuthWrapper from "HOC/AuthWrapper";
+import { Navigate } from "react-router-dom";
+// import Dashboard from "pages/private/dashboard/Dashboard";
 
 const Router = () => {
-  const isLoggedIn = useIsLoggedIn();
-
   return (
-    <AuthContext.Provider value={isLoggedIn}>
-      <Suspense fallback={AppLoader} />
-      <BrowserRouter>
-        <Switch>
-          <Redirect exact from="/" to="/u/dashboard" />
-          {/* All the public routes */}
-          {PublicRoutes.map((route) => (
-            <PublicWrapper key={`Route-${route.path}`} {...route} />
-          ))}
-
-          {/* All the private routes */}
-          {PrivateRoutes.map((route) => (
-            <AuthWrapper key={`Route-${route.path}`} {...route} />
-          ))}
-
-          {/* 404 page route */}
-          <Route exact path="*" component={Error404} />
-        </Switch>
-      </BrowserRouter>
-    </AuthContext.Provider>
+    <BrowserRouter>
+      <Routes>
+        {/* Link redirect to /signup */}
+        <Route path="/" element={<Navigate to="/signup" />} />
+        <Route path="signup" element={<SignUp />} />
+        <Route path="login" element={<Login />} />
+        <Route element={<AuthWrapper />}>
+          <Route path="dashboard/*" element={<Dashboard />}>
+            <Route path="activities" element={<Activities />} />
+          </Route>
+        </Route>
+        {/* 404 page route */}
+        <Route path="*" element={<Error404 />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

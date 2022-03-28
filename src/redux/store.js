@@ -1,21 +1,17 @@
-import { createStore, combineReducers } from "redux";
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
-import AppReducer from "./reducers/appReducer";
+import createSagaMiddleware from "@redux-saga/core";
+import { configureStore } from "@reduxjs/toolkit";
+import userReducer from "./users/slice";
+import rootSaga from "./rootSagas";
+const sagaMiddleWare = createSagaMiddleware();
+function middleware(getDefaultMiddleware) {
+  return getDefaultMiddleware({ thunk: false }).concat(sagaMiddleWare);
+}
+const store = configureStore({
+  reducer: {
+    userReducer
+  },
+  middleware
+});
 
-const PersistConfig = {
-  key: "root",
-  storage,
-  whitelist: ["app"]
-};
-
-const AllReducer = {
-  app: AppReducer
-};
-
-const rootReducer = combineReducers(AllReducer);
-const persistedReducer = persistReducer(PersistConfig, rootReducer);
-
-const store = createStore(persistedReducer);
-export const persistor = persistStore(store);
+sagaMiddleWare.run(rootSaga);
 export default store;
