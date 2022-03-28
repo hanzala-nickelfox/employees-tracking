@@ -20,6 +20,7 @@ function DashboardBody() {
       Path == "/activities/learning" ||
       Path == "/activities/festivals" ||
       Path == "/activities/projects" ||
+      Path == "/activities/projects/details" ||
       Path == "/activities/personal"
     ) {
       setActivities(true);

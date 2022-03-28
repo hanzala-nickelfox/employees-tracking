@@ -4,10 +4,11 @@ import Button from "@mui/material/Button";
 import MembersList from "./ChildComponents/MembersList";
 import { Link } from "react-router-dom";
 import DeatilsHeader from "./ChildComponents/DeatilsHeader";
+import Box from "@mui/system/Box";
 
 export default function Details() {
   return (
-    <Card sx={{ minWidth: 275, padding: "20px" }}>
+    <Box sx={{ mt: 4 }}>
       <Button
         sx={{ mb: 2, color: "white" }}
         variant="contained"
@@ -21,10 +22,12 @@ export default function Details() {
           Back
         </Link>
       </Button>
+    <Card sx={{ minWidth: 275, padding: "20px", mt: 1 }}>
 
       <DeatilsHeader />
 
       <MembersList />
     </Card>
+    </Box>
   );
 }
