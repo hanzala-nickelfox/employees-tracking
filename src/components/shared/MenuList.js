@@ -9,46 +9,48 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import Notifications from "@mui/icons-material/Notifications";
 import { NavLink } from "react-router-dom";
-
 function MenuList() {
-  
   const menuList = [
     {
       itemName: "Home",
       icon: <Home />,
-      ItemLink: "/dashboard"
+      ItemLink: "home"
     },
     {
       itemName: "Activities",
       icon: <Activities />,
-      ItemLink: "/activities/projects"
+      ItemLink: "activities"
     },
     {
       itemName: "Notifications",
       icon: <Notifications />,
-      ItemLink: "/notifications"
+      ItemLink: "notifications"
     },
     {
       itemName: "Settings",
       icon: <Settings />,
-      ItemLink: "/settings"
+      ItemLink: "settings"
     },
     {
       itemName: "Logout",
       icon: <Logout />,
-      ItemLink: "/logout"
+      ItemLink: "logout"
     }
   ];
 
   return (
     <>
       <List>
-        {menuList.map((menuList, idx) => (
-          <ListItem component={NavLink} to={menuList.ItemLink} button key={idx}>
-            <ListItemIcon>{menuList.icon}</ListItemIcon>
-            <ListItemText primary={menuList.itemName} />
-          </ListItem>
-        ))}
+        {menuList.map((item) => {
+          return (
+            <NavLink key={`/${item.ItemLink}`} to={item.ItemLink}>
+              <ListItem button>
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText primary={item.itemName} />
+              </ListItem>
+            </NavLink>
+          );
+        })}
       </List>
     </>
   );

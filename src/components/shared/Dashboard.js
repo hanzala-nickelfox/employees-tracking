@@ -11,13 +11,13 @@ import Typography from "@mui/material/Typography";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuIcon from "@mui/icons-material/Menu";
-import Avatar from "@mui/material/Avatar";
+// import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useState } from "react";
 import DashboardBody from "./DashboardBody";
-
+import { getAuth } from "firebase/auth";
 const drawerWidth = 240;
 
 const settings = ["Profile", "Account", "Logout"];
@@ -52,7 +52,9 @@ const Dashboard = () => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [anchorElUser, setAnchorElUser] = useState(null);
-
+  const auth = getAuth();
+  const user = auth.currentUser.displayName;
+  const initialChar = user.charAt(0);
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -88,7 +90,7 @@ const Dashboard = () => {
             <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "end" }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  {initialChar}
                 </IconButton>
               </Tooltip>
               <Menu
