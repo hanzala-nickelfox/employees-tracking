@@ -5,8 +5,8 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import Divider from "@mui/material/Divider";
 import { Avatar } from "@mui/material";
+import Typography from "@mui/material/Typography";
 
 export default function BasicList() {
   const MembersList = [
@@ -37,7 +37,22 @@ export default function BasicList() {
   ];
 
   return (
-    <Card sx={{ minWidth: 275, mb: 4, padding: "10px 0px" }}>
+    <Card sx={{ minWidth: 275, mb: 4 }}>
+      <nav
+        style={{
+          display: "flex",
+          justifyContent: "space-between"
+        }}>
+        <Typography variant="h6" width={"100%"} pl={"16px"} component="div">
+          Name
+        </Typography>
+        <Typography variant="h6" width={"100%"} pl={"16px"} component="div">
+        Role
+        </Typography>
+        <Typography variant="h6" width={"100%"} pl={"16px"} component="div">
+        Department
+        </Typography>
+      </nav>
       <Box
         sx={{
           width: "100%",
@@ -58,18 +73,17 @@ export default function BasicList() {
                 style={{
                   display: "flex"
                 }}>
-                <ListItem>
+                <ListItem button divider>
                   <ListItemIcon>
                     <Avatar />
                   </ListItemIcon>
                   <ListItemText primary={MembersList.name} />
                 </ListItem>
-                <ListItem>
+                <ListItem button divider>
                   <ListItemText primary={MembersList.role} />
                 </ListItem>
-                <ListItem>
+                <ListItem button divider>
                   <ListItemText primary={MembersList.department} />
-                  <Divider />
                 </ListItem>
               </List>
             </>
