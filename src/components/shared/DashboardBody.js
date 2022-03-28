@@ -6,14 +6,22 @@ import Learning from "pages/private/Learning/Learning";
 import Festivals from "pages/private/Festivals/Festivals";
 import Projects from "pages/private/Projects/projects";
 import Personal from "pages/private/Personal/Personal";
+import Details from "pages/private/Details/Details";
 import Error404 from "pages/Error404";
 
 function DashboardBody() {
   const [activities, setActivities] = useState(false);
   const location = useLocation();
+  const Path = location.pathname;
 
   useEffect(() => {
-    if (location.pathname.includes("/activities")) {
+    if (
+      Path == "/activities" ||
+      Path == "/activities/learning" ||
+      Path == "/activities/festivals" ||
+      Path == "/activities/projects" ||
+      Path == "/activities/personal"
+    ) {
       setActivities(true);
     } else {
       setActivities(false);
@@ -30,6 +38,7 @@ function DashboardBody() {
         <Route path="/activities/learning" element={<Learning />} />
         <Route path="/activities/festivals" element={<Festivals />} />
         <Route path="/activities/Personal" element={<Personal />} />
+        <Route path="/activities/projects/details" element={<Details />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
     </>

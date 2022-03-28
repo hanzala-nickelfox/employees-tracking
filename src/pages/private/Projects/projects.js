@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 function Projects() {
   const ActiveProjects = [
     {
-      title: "Project 1",
+      title: "NFXW",
       description: "This is a description for project 1",
       status: "In Progress",
       progress: "50%",
@@ -31,7 +31,7 @@ function Projects() {
       ]
     },
     {
-      title: "Project 2",
+      title: "Goumbale",
       description: "This is a description for project 1",
       status: "In Progress",
       progress: "50%",
@@ -57,7 +57,7 @@ function Projects() {
       ]
     },
     {
-      title: "Project 3",
+      title: "TO & FROM",
       description: "This is a description for project 1",
       status: "In Progress",
       progress: "50%",

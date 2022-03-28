@@ -5,6 +5,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { Link } from "react-router-dom";
 
 export default function BasicCard({ ActiveProjects }) {
   return (
@@ -23,16 +24,16 @@ export default function BasicCard({ ActiveProjects }) {
                 sx={{ fontSize: 14 }}
                 color="text.secondary"
                 gutterBottom>
-                Status : {projectData.status}
+                {projectData.status}
               </Typography>
               <Typography variant="h5" component="div">
-                Name : {projectData.title}
+                {projectData.title}
               </Typography>
               <Typography sx={{ mb: 1.5 }} color="text.secondary">
                 Progress: {projectData.progress}
               </Typography>
               <Typography variant="body2">
-                Description : {projectData.description}
+                {projectData.description}
                 <br />
                 <br />
               </Typography>
@@ -43,7 +44,14 @@ export default function BasicCard({ ActiveProjects }) {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small">Learn More</Button>
+              <Button
+                variant="contained"
+                color="secondary"
+                role="button"
+                component={Link}
+                to={`/activities/projects/details`}>
+                Learn More
+              </Button>
             </CardActions>
           </Card>
         ))}
