@@ -6,7 +6,7 @@ import Activities from "pages/private/Activities/Activities";
 import SignUp from "pages/public/signup";
 import Login from "pages/public/login";
 import AuthWrapper from "HOC/AuthWrapper";
-import { Navigate } from "react-router";
+import { Navigate } from "react-router-dom";
 // import Dashboard from "pages/private/dashboard/Dashboard";
 
 const Router = () => {
