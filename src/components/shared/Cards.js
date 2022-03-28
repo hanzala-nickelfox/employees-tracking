@@ -55,9 +55,16 @@ export default function BasicCard({ ActiveProjects }) {
                 variant="contained"
                 color="secondary"
                 role="button"
-                component={Link}
-                to={`/activities/projects/details`}>
-                Learn More
+              >
+                <Link
+                  style={{
+                    textDecoration: "none",
+                    color: "white"
+                  }}
+                  to={`/activities/projects/details`}>
+                  {" "}
+                  Learn More{" "}
+                </Link>
               </Button>
             </CardActions>
           </Card>

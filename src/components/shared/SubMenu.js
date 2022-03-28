@@ -48,7 +48,8 @@ export default function DisabledTabs() {
         indicatorColor="secondary"
         value={value}
         onChange={handleChange}
-        aria-label="tabs example">
+        aria-label="tabs example"
+        >
         <Tab label="Projects" />
         <Tab label="Learning" />
         <Tab label="Festivals" />
