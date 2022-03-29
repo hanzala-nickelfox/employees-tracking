@@ -8,10 +8,14 @@ import Typography from "@mui/material/Typography";
 import FormField from "../../../components/shared/FormField";
 import Grid from "@mui/material/Grid";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { login, setIsLoggedIn } from "redux/slices/loginSlice.js";
+import { useDispatch, useSelector } from "react-redux";
+import { signin as signinAction } from "../../../redux/users/actions";
 
 const Login = () => {
+  const { isloggedIn } = useSelector((state) => state.userReducer);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const intialValues = {
     email: "",
     password: ""
@@ -35,8 +39,6 @@ const Login = () => {
   }, [formErrors]);
 
   const validate = (values) => {
-    const mail = localStorage.getItem("Email").replace(/(^"|"$)/g, "");
-    const pass = localStorage.getItem("Password").replace(/(^"|"$)/g, "");
     const errors = {};
     if (!values.email) {
       errors.email = "Email is required";
@@ -44,34 +46,28 @@ const Login = () => {
     if (!values.password) {
       errors.password = "Password is required";
     }
-    if (values.email !== mail) {
-      errors.email = "Email is not valid";
-    }
-    if (values.password !== pass) {
-      errors.password = "Password is not valid";
-    }
 
     return errors;
   };
 
-  let navigate = useNavigate();
-  const dispatch = useDispatch();
+  useEffect(() => {
+    if (isloggedIn) {
+      const token = localStorage.getItem("token");
+      if (token) {
+        setGlobalError(globalError === "" ? "Successfully login" : "");
+        const path = `/dashboard`;
+        navigate(path);
+      }
+    } else {
+      navigate("/login");
+    }
+  }, [isloggedIn]);
 
   function handlelogin(e) {
     e.preventDefault();
-    dispatch(login({ email, password }));
-    dispatch(setIsLoggedIn(true));
+    dispatch(signinAction({ email, password }));
     setFormErrors(validate(userData));
     setIsSubmit(true);
-    const mail = localStorage.getItem("Email").replace(/(^"|"$)/g, "");
-    const pass = localStorage.getItem("Password").replace(/(^"|"$)/g, "");
-    if (email == mail && password == pass) {
-      setGlobalError(globalError === "" ? "Successfully login" : "");
-      localStorage.setItem("isLoggedIn", JSON.stringify(true));
-      let path = `/dashboard`;
-      navigate(path);
-      window.location.reload(false);
-    }
   }
   return (
     <>
