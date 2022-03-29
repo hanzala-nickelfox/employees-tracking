@@ -1,8 +1,15 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
 import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
 export default function DisabledTabs() {
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   const menuList = [
     {
       itemName: "Projects",
@@ -22,21 +29,29 @@ export default function DisabledTabs() {
     }
   ];
   const style = {
-    display: "flex"
+    display: "flex",
+    justifyContent: "center"
   };
+
   return (
     <>
-      <div style={style}>
-        {menuList.map((item) => {
-          return (
-            <NavLink key={`path-${item.ItemLink}`} to={item.ItemLink}>
-            <ListItem button>
-                <ListItemText primary={item.itemName} />
-              </ListItem>
-            </NavLink>
-          );
-        })}
-      </div>
+      <Box
+        sx={{
+          width: "100%",
+          bgcolor: "background.paper"
+        }}>
+        <nav style={style} value={value} onChange={handleChange}>
+          {menuList.map((item) => {
+            return (
+              <NavLink key={`path-${item.ItemLink}`} to={item.ItemLink}>
+                <ListItem button>
+                  <Tab label={item.itemName} />
+                </ListItem>
+              </NavLink>
+            );
+          })}
+        </nav>
+      </Box>
     </>
   );
 }
