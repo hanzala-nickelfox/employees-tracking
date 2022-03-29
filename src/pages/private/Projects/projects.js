@@ -1,173 +1,44 @@
 import React from "react";
+import { Route, Routes } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Error404 from "pages/Error404";
 import Cards from "../../../components/shared/Cards";
 import Typography from "@mui/material/Typography";
 
 function Projects() {
-  const ActiveProjects = [
-    {
-      title: "NFXW",
-      description: "This is a description for project 1",
-      status: "In Progress",
-      progress: "50%",
-      startDate: "01/01/2020",
-      endDate: "01/01/2020",
-      members: [
-        {
-          name: "John Doe",
-          role: "Developer",
-          status: "Active",
-          progress: "50%",
-          startDate: "01/01/2020",
-          endDate: "01/01/2020"
-        },
-        {
-          name: "John Doe",
-          role: "Developer",
-          status: "Active",
-          progress: "50%",
-          startDate: "01/01/2020",
-          endDate: "01/01/2020"
-        }
-      ]
-    },
-    {
-      title: "Goumbale",
-      description: "This is a description for project 1",
-      status: "In Progress",
-      progress: "50%",
-      startDate: "01/01/2020",
-      endDate: "01/01/2020",
-      members: [
-        {
-          name: "John Doe",
-          role: "Developer",
-          status: "Active",
-          progress: "50%",
-          startDate: "01/01/2020",
-          endDate: "01/01/2020"
-        },
-        {
-          name: "John Doe",
-          role: "Developer",
-          status: "Active",
-          progress: "50%",
-          startDate: "01/01/2020",
-          endDate: "01/01/2020"
-        }
-      ]
-    },
-    {
-      title: "TO & FROM",
-      description: "This is a description for project 1",
-      status: "In Progress",
-      progress: "50%",
-      startDate: "01/01/2020",
-      endDate: "01/01/2020",
-      members: [
-        {
-          name: "John Doe",
-          role: "Developer",
-          status: "Active",
-          progress: "50%",
-          startDate: "01/01/2020",
-          endDate: "01/01/2020"
-        },
-        {
-          name: "John Doe",
-          role: "Developer",
-          status: "Active",
-          progress: "50%",
-          startDate: "01/01/2020",
-          endDate: "01/01/2020"
-        }
-      ]
-    },
-    {
-      title: "Project 4",
-      description: "This is a description for project 1",
-      status: "In Progress",
-      progress: "50%",
-      startDate: "01/01/2020",
-      endDate: "01/01/2020",
-      members: [
-        {
-          name: "John Doe",
-          role: "Developer",
-          status: "Active",
-          progress: "50%",
-          startDate: "01/01/2020",
-          endDate: "01/01/2020"
-        },
-        {
-          name: "John Doe",
-          role: "Developer",
-          status: "Active",
-          progress: "50%",
-          startDate: "01/01/2020",
-          endDate: "01/01/2020"
-        }
-      ]
-    },
-    {
-      title: "Project 5",
-      description: "This is a description for project 1",
-      status: "In Progress",
-      progress: "50%",
-      startDate: "01/01/2020",
-      endDate: "01/01/2020",
-      members: [
-        {
-          name: "John Doe",
-          role: "Developer",
-          status: "Active",
-          progress: "50%",
-          startDate: "01/01/2020",
-          endDate: "01/01/2020"
-        },
-        {
-          name: "John Doe",
-          role: "Developer",
-          status: "Active",
-          progress: "50%",
-          startDate: "01/01/2020",
-          endDate: "01/01/2020"
-        }
-      ]
-    },
-    {
-      title: "Project 6",
-      description: "This is a description for project 1",
-      status: "In Progress",
-      progress: "50%",
-      startDate: "01/01/2020",
-      endDate: "01/01/2020",
-      members: [
-        {
-          name: "John Doe",
-          role: "Developer",
-          status: "Active",
-          progress: "50%",
-          startDate: "01/01/2020",
-          endDate: "01/01/2020"
-        },
-        {
-          name: "John Doe",
-          role: "Developer",
-          status: "Active",
-          progress: "50%",
-          startDate: "01/01/2020",
-          endDate: "01/01/2020"
-        }
-      ]
-    }
-  ];
+  const ActiveProjects = useSelector(
+    (state) => state.projectReducer.projectsData
+  );
+
+  const path = ActiveProjects.map((item) => item.linkPath);
 
   return (
     <>
-      <Typography variant="h5" component="div">
-        Projects
-      </Typography>
-      <Cards ActiveProjects={ActiveProjects} />
+      <>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Typography variant="h5" component="div">
+                Projects
+              </Typography>
+            }
+          />
+          {ActiveProjects.map((path) => {
+            return (
+              <Route
+                path={path.title.replace(/\s+/g, "-").toLowerCase()}
+                element={<h1>Hello {path.title}</h1>}
+                key={path.title}
+              />
+            );
+          })}
+          <Route path="*" element={<Error404 />} />
+        </Routes>
+      </>
+      <>
+        <Cards ActiveProjects={ActiveProjects} path={path} />
+      </>
     </>
   );
 }

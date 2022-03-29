@@ -1,11 +1,11 @@
 import * as React from "react";
+import { NavLink } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 export default function BasicCard({ ActiveProjects }) {
   return (
@@ -17,7 +17,11 @@ export default function BasicCard({ ActiveProjects }) {
         }}>
         {ActiveProjects.map((projectData, index) => (
           <Card
-            sx={{ minWidth: 275, maxWidth: 100, margin: "15px 20px 15px 0px" }}
+            sx={{
+              minWidth: 275,
+              maxWidth: 100,
+              margin: "15px 20px 15px 0px"
+            }}
             key={index}>
             <CardContent>
               <Typography
@@ -48,24 +52,12 @@ export default function BasicCard({ ActiveProjects }) {
             </CardContent>
 
             <CardActions>
-              <Button
-                style={{
-                  backgroundColor: "30px"
-                }}
-                variant="contained"
-                color="secondary"
-                role="button"
-              >
-                <Link
-                  style={{
-                    textDecoration: "none",
-                    color: "white"
-                  }}
-                  to={`/activities/projects/details`}>
-                  {" "}
-                  Learn More{" "}
-                </Link>
-              </Button>
+              <NavLink
+                to={projectData.title.replace(/\s+/g, "-").toLowerCase()}>
+                <Button variant="primary" underline="none">
+                  <Typography>Details</Typography>
+                </Button>
+              </NavLink>
             </CardActions>
           </Card>
         ))}

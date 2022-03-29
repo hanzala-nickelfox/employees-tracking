@@ -14,12 +14,12 @@ function MenuList() {
     {
       itemName: "Home",
       icon: <Home />,
-      ItemLink: "home"
+      ItemLink: "dashboard"
     },
     {
       itemName: "Activities",
       icon: <Activities />,
-      ItemLink: "activities"
+      ItemLink: "activities/projects"
     },
     {
       itemName: "Notifications",
