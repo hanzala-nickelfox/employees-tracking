@@ -17,7 +17,11 @@ export default function BasicCard({ ActiveProjects }) {
         }}>
         {ActiveProjects.map((projectData, index) => (
           <Card
-            sx={{ minWidth: 275, maxWidth: 100, margin: "15px 20px 15px 0px" }}
+            sx={{
+              minWidth: 275,
+              maxWidth: 100,
+              margin: "15px 20px 15px 0px"
+            }}
             key={index}>
             <CardContent>
               <Typography
@@ -44,7 +48,8 @@ export default function BasicCard({ ActiveProjects }) {
               </Typography>
             </CardContent>
             <CardActions>
-              <NavLink to={projectData.title.replace(/\s/g, "").toLowerCase()}>
+              <NavLink
+                to={projectData.title.replace(/\s+/g, "-").toLowerCase()}>
                 <Button variant="primary" underline="none">
                   <Typography>Details</Typography>
                 </Button>

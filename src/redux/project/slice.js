@@ -15,7 +15,7 @@ const initialValue = {
     },
     {
       title: "Project Title",
-      description: "Prject Description",
+      description: "Project Description",
       status: "Project Status",
       progress: "Project Progress",
       startDate: "Start Date",
