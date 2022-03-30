@@ -9,7 +9,7 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import Notifications from "@mui/icons-material/Notifications";
 import { NavLink } from "react-router-dom";
-function MenuList() {
+const Navigation = () => {
   const menuList = [
     {
       itemName: "Home",
@@ -19,7 +19,7 @@ function MenuList() {
     {
       itemName: "Activities",
       icon: <Activities />,
-      ItemLink: "activities/projects"
+      ItemLink: "activities"
     },
     {
       itemName: "Notifications",
@@ -38,12 +38,19 @@ function MenuList() {
     }
   ];
 
+  const navStyle = {
+    textDecoration: "none",
+    color: "rgba(0, 0, 0, 0.54)"
+  };
   return (
     <>
       <List>
         {menuList.map((item) => {
           return (
-            <NavLink key={`/${item.ItemLink}`} to={item.ItemLink}>
+            <NavLink
+              style={navStyle}
+              key={`/${item.ItemLink}`}
+              to={item.ItemLink}>
               <ListItem button>
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.itemName} />
@@ -54,6 +61,6 @@ function MenuList() {
       </List>
     </>
   );
-}
+};
 
-export default MenuList;
+export default Navigation;

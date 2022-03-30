@@ -2,7 +2,7 @@ import React from "react";
 import Cards from "../../../components/shared/Cards";
 import Typography from "@mui/material/Typography";
 
-function Festivals() {
+const Festivals = () => {
   const festivalsgData = [
     {
       title: "independence session",
@@ -33,11 +33,11 @@ function Festivals() {
   return (
     <>
       <Typography variant="h5" component="div">
-      Festivals
+        Festivals
       </Typography>
       <Cards ActiveProjects={festivalsgData} />
     </>
   );
-}
+};
 
 export default Festivals;

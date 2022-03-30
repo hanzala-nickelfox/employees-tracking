@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import React from "react";
 
-function FormField(props) {
+const FormField = (props) => {
   return (
     <>
       <TextField
@@ -17,6 +17,6 @@ function FormField(props) {
       />
     </>
   );
-}
+};
 
 export default FormField;

@@ -1,4 +1,5 @@
 import React from "react";
+import { ToastContainer } from "react-toastify";
 import AppRouter from "./router";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { defaultTheme } from "./themes/defaultTheme";
@@ -21,6 +22,7 @@ function App() {
   return (
     <ThemeProvider theme={currentTheme}>
       <AppRouter />
+      <ToastContainer autoClose={2000} />
     </ThemeProvider>
   );
 }

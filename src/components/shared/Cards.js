@@ -7,7 +7,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
-export default function BasicCard({ ActiveProjects }) {
+const BasicCard=({ActiveProjects})=>{
   return (
     <>
       <Box
@@ -61,3 +61,5 @@ export default function BasicCard({ ActiveProjects }) {
     </>
   );
 }
+
+export default BasicCard

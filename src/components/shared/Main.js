@@ -1,9 +1,4 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
-import Layout from "../../../components/shared/Layout";
-import { useState } from "react";
-// import { Outlet } from "react-router-dom";
 
 const drawerWidth = 240;
 export const Main = styled("main", {
@@ -27,17 +22,3 @@ export const Main = styled("main", {
     marginLeft: `${drawerWidth}px`
   })
 }));
-
-const DashboardLayout = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <Box sx={{ display: "flex" }}>
-        <Layout open={open} setOpen={setOpen} />
-      </Box>
-    </>
-  );
-};
-
-export default DashboardLayout;
