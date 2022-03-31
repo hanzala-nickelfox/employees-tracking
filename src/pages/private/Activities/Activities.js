@@ -1,31 +1,26 @@
 import React, { useEffect } from "react";
-import SubMenu from "components/shared/SubMenu";
-import { Route, Routes, useNavigate } from "react-router-dom";
-import Projects from "../Projects/projects";
-import Personal from "pages/private/Personal/Personal";
-import Learning from "pages/private/Learning/Learning";
-import Festivals from "pages/private/Festivals/Festivals";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import Navigation from "components/shared/SubNavigation";
+import { activitiesRoutes } from "router/routes/PrivateRoutes";
+import { Divider } from "@mui/material";
 
-function Activities() {
+const Activities = () => {
   const navigate = useNavigate();
-
   useEffect(() => {
     navigate("/activities/projects");
   }, []);
 
   return (
     <>
-      <SubMenu />
-      <hr />
-
+      <Navigation />
+      <Divider style={{marginBottom:'1rem'}}/>
       <Routes>
-        <Route path="projects/*" element={<Projects />} />
-        <Route path="learning" element={<Learning />} />
-        <Route path="festivals" element={<Festivals />} />
-        <Route path="personal" element={<Personal />} />
+        {activitiesRoutes.map((route) => (
+          <Route key={route.path} path={route.path} element={route.element} />
+        ))}
       </Routes>
     </>
   );
-}
+};
 
 export default Activities;

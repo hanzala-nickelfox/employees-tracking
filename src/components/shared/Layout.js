@@ -18,8 +18,7 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import MenuList from "./MenuList";
-
+import Navigation from "./Navigation";
 const drawerWidth = 220;
 const settings = ["Profile", "Account", "Logout"];
 
@@ -127,7 +126,6 @@ const Layout = (props) => {
             sx={{ mr: 2, ...(props.open && { display: "none" }) }}>
             <MenuIcon />
           </IconButton>
-
           <Typography variant="h6" noWrap component="div">
             Employee Tracking
           </Typography>
@@ -175,7 +173,7 @@ const Layout = (props) => {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <MenuList />
+        <Navigation />
       </Drawer>
     </React.Fragment>
   );

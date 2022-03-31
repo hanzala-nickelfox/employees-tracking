@@ -2,7 +2,7 @@ import React from "react";
 import Cards from "../../../components/shared/Cards";
 import Typography from "@mui/material/Typography";
 
-function Learning() {
+const Learning = () => {
   const learningData = [
     {
       title: "Git session",
@@ -46,6 +46,6 @@ function Learning() {
       <Cards ActiveProjects={learningData} />
     </>
   );
-}
+};
 
 export default Learning;

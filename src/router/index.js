@@ -1,26 +1,20 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Error404 from "pages/Error404";
-import Dashboard from "pages/private/dashboard/Dashboard";
-import SignUp from "pages/public/signup";
-import Login from "pages/public/login";
+import {BrowserRouter, Routes, Route } from "react-router-dom";
 import AuthWrapper from "HOC/AuthWrapper";
-import { Navigate } from "react-router";
-// import Dashboard from "pages/private/dashboard/Dashboard";
+import { PublicRoutes, PrivateRoutes } from "router/routes/index";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Link redirect to /signup */}
-        <Route path="/" element={<Navigate to="/signup" />} />
-        <Route path="signup" element={<SignUp />} />
-        <Route path="login" element={<Login />} />
+        {PublicRoutes.map((route) => (
+          <Route key={route.path} path={route.path} element={route.element} />
+        ))}
         <Route element={<AuthWrapper />}>
-          <Route path="/*" element={<Dashboard />} />
+          {PrivateRoutes.map((route) => (
+            <Route key={route.path} path={route.path} element={route.element} />
+          ))}
         </Route>
-        {/* 404 page route */}
-        <Route path="*" element={<Error404 />} />
       </Routes>
     </BrowserRouter>
   );

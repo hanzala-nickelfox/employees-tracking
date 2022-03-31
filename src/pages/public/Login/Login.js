@@ -10,9 +10,11 @@ import Grid from "@mui/material/Grid";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signin as signinAction } from "../../../redux/users/actions";
+import AppLoader from "components/Loader/AppLoader.js";
 
 const Login = () => {
   const { isloggedIn } = useSelector((state) => state.userReducer);
+  const { isChecking } = useSelector((state) => state.userReducer);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -71,6 +73,7 @@ const Login = () => {
   }
   return (
     <>
+      {isChecking && <AppLoader />}
       <Container component="main" maxWidth="xs" className="mt-5">
         {globalError}
         <Row className="text-center justify-content-center mb-4">
@@ -120,7 +123,7 @@ const Login = () => {
               </Grid>
               <Grid item>
                 <Link to="/" variant="body2">
-                  {"Haven't an account? Sign up"}
+                  {"Haven't got an account? Sign up"}
                 </Link>
               </Grid>
             </Grid>

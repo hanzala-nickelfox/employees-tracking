@@ -2,8 +2,8 @@ import React from "react";
 import Cards from "../../../components/shared/Cards";
 import Typography from "@mui/material/Typography";
 
-function Personal() {
-  const PersonalgData = [
+const Personal = () => {
+  const PersonalData = [
     {
       title: "Savings session",
       description: "This is a description for project 1",
@@ -33,11 +33,11 @@ function Personal() {
   return (
     <>
       <Typography variant="h5" component="div">
-      Personal improvement
+        Personal improvement
       </Typography>
-      <Cards ActiveProjects={PersonalgData} />
+      <Cards ActiveProjects={PersonalData} />
     </>
   );
-}
+};
 
 export default Personal;

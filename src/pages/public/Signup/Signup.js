@@ -7,7 +7,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signup as signupAction } from "../../../redux/users/actions";
 
@@ -19,7 +19,6 @@ const SignUp = () => {
     confirmPassword: ""
   };
   const [formData, setFormData] = useState(intialValues);
-  const [globalError, setGlobalError] = useState("");
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const { name, email, password, confirmPassword } = formData;
@@ -75,31 +74,18 @@ const SignUp = () => {
     return errors;
   };
 
-  let navigate = useNavigate();
   const dispatch = useDispatch();
 
   function handleSubmit(e) {
     e.preventDefault();
     setFormErrors(validate(formData));
     setIsSubmit(true);
-
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      localStorage.setItem("Name", JSON.stringify(name));
-      localStorage.setItem("Email", JSON.stringify(email));
-      localStorage.setItem("Password", JSON.stringify(password));
-      localStorage.setItem("Confirm password", JSON.stringify(confirmPassword));
-      // localStorage.setItem("isLoggedIn", JSON.stringify(true));
-      setGlobalError(globalError === "" ? "Successfully Signed Up" : "");
-      let path = `/login`;
-      navigate(path);
-      dispatch(signupAction({ name, email, password, confirmPassword }));
-    }
+    dispatch(signupAction({ name, email, password, confirmPassword }));
   }
 
   return (
     <>
       <Container component="main" maxWidth="xs" className="mt-5">
-        {globalError}
         <Row className="text-center justify-content-center mb-4">
           <Avatar className="mb-4" sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
