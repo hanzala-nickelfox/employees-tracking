@@ -100,7 +100,7 @@ const SignUp = () => {
               <FormField
                 type="text"
                 name="name"
-                value={formData.name}
+                value={name}
                 label="Name"
                 placeholder="Enter Name"
                 onChange={handleChange}
@@ -113,7 +113,7 @@ const SignUp = () => {
                 label="Email"
                 type="email"
                 name="email"
-                value={formData.email}
+                value={email}
                 placeholder="Email"
                 onChange={handleChange}
               />
@@ -123,7 +123,7 @@ const SignUp = () => {
               <FormField
                 type="password"
                 name="password"
-                value={formData.password}
+                value={password}
                 label="Password"
                 placeholder="Password"
                 onChange={handleChange}
@@ -134,7 +134,7 @@ const SignUp = () => {
               <FormField
                 type="password"
                 name="confirmPassword"
-                value={formData.confirmPassword}
+                value={confirmPassword}
                 label="Confirm Password"
                 placeholder="Confirm password"
                 onChange={handleChange}

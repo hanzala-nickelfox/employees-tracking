@@ -1,5 +1,5 @@
-import * as React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAuth } from "firebase/auth";
 import { setIsOpen } from "redux/users/slice";
@@ -10,10 +10,18 @@ import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuIcon from "@mui/icons-material/Menu";
+import Home from "@mui/icons-material/Home";
+import Activities from "@mui/icons-material/Rowing";
+import Settings from "@mui/icons-material/Settings";
+import Logout from "@mui/icons-material/Logout";
+import Notifications from "@mui/icons-material/Notifications";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import Menu from "@mui/material/Menu";
@@ -21,6 +29,33 @@ import MenuItem from "@mui/material/MenuItem";
 import Navigation from "./Navigation";
 const drawerWidth = 220;
 const settings = ["Profile", "Account", "Logout"];
+const menuList = [
+  {
+    itemName: "Home",
+    icon: <Home />,
+    ItemLink: "dashboard"
+  },
+  {
+    itemName: "Activities",
+    icon: <Activities />,
+    ItemLink: "activities"
+  },
+  {
+    itemName: "Notifications",
+    icon: <Notifications />,
+    ItemLink: "notifications"
+  },
+  {
+    itemName: "Settings",
+    icon: <Settings />,
+    ItemLink: "settings"
+  },
+  {
+    itemName: "Logout",
+    icon: <Logout />,
+    ItemLink: "logout"
+  }
+];
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -114,8 +149,13 @@ const Layout = (props) => {
     dispatch(setIsOpen(false));
   };
 
+  const style = {
+    textDecoration: "none",
+    color: "rgba(0, 0, 0, 0.54)"
+  };
+
   return (
-    <React.Fragment>
+    <>
       <AppBar color="secondary" position="fixed" open={props.open}>
         <Toolbar>
           <IconButton
@@ -173,9 +213,23 @@ const Layout = (props) => {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <Navigation />
+        <Navigation style={style}>
+          {menuList.map((menuItem) => {
+            return (
+              <NavLink
+                style={style}
+                to={menuItem.ItemLink}
+                key={menuItem.itemName}>
+                <ListItem button>
+                  <ListItemIcon>{menuItem.icon}</ListItemIcon>
+                  <ListItemText primary={menuItem.itemName} />
+                </ListItem>
+              </NavLink>
+            );
+          })}
+        </Navigation>
       </Drawer>
-    </React.Fragment>
+    </>
   );
 };
 
