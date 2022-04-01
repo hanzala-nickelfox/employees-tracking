@@ -15,43 +15,45 @@ export const PrivateRoutes = [
 
   {
     path: "activities/*",
-    element: <Activities />
+    element: <Activities />,
+    children: [
+      {
+        path: ":projects/*",
+        element: <Projects />
+        // details: {
+        //   path: ":details",
+        //   element: (
+        //     <div>
+        //       details
+        //     </div>
+        //   )
+        // }
+      },
+      {
+        path: "learning",
+        element: <Learning />
+      },
+      {
+        path: "festivals",
+        element: <Festivals />
+      },
+      {
+        path: "personal",
+        element: <Personal />
+      },
+      {
+        path: "details/*",
+        element: (
+          <div>
+            <h1>Details</h1>
+          </div>
+        )
+      }
+    ]
   },
-  {
-    path: "notifications",
-    element: (
-      <>
-        <h1>Notification</h1>
-      </>
-    )
-  },
+
   {
     path: "*",
     element: <Error404 />
   }
 ];
-
-export const activitiesRoutes = [
-  {
-    path: "projects/*",
-    element: <Projects />
-  },
-  {
-    path: "personal",
-    element: <Personal />
-  },
-  {
-    path: "learning",
-    element: <Learning />
-  },
-  {
-    path: "festivals",
-    element: <Festivals />
-  },
-  {
-    path: "*",
-    element: <Error404 />
-  }
-];
-
-export const projectRoutes = [];

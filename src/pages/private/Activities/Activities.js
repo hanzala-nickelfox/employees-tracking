@@ -1,10 +1,37 @@
 import React, { useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
-import Navigation from "components/shared/SubNavigation";
-import { activitiesRoutes } from "router/routes/PrivateRoutes";
-import { Divider } from "@mui/material";
+import { useNavigate, Outlet, NavLink } from "react-router-dom";
+import Navigation from "components/shared/Navigation";
+import { Box, Divider } from "@mui/material";
+import ListItem from "@mui/material/ListItem";
+import Tab from "@mui/material/Tab";
 
 const Activities = () => {
+  const menuList = [
+    {
+      itemName: "Projects",
+      ItemLink: "projects"
+    },
+    {
+      itemName: "Learning",
+      ItemLink: "learning"
+    },
+    {
+      itemName: "Festivals",
+      ItemLink: "festivals"
+    },
+    {
+      itemName: "Personal",
+      ItemLink: "personal"
+    }
+  ];
+  const navStyle = {
+    display: "flex",
+    justifyContent: "center"
+  };
+  const linkStyle = {
+    textDecoration: "none",
+    color: "#3980c3"
+  };
   const navigate = useNavigate();
   useEffect(() => {
     navigate("/activities/projects");
@@ -12,13 +39,21 @@ const Activities = () => {
 
   return (
     <>
-      <Navigation />
-      <Divider style={{marginBottom:'1rem'}}/>
-      <Routes>
-        {activitiesRoutes.map((route) => (
-          <Route key={route.path} path={route.path} element={route.element} />
-        ))}
-      </Routes>
+      <Navigation style={navStyle}>
+        {menuList.map((menuItem) => {
+          return (
+            <Box key={menuItem.ItemLink} style={navStyle}>
+              <NavLink style={linkStyle} to={menuItem.ItemLink}>
+                <ListItem button>
+                  <Tab label={menuItem.itemName} />
+                </ListItem>
+              </NavLink>
+            </Box>
+          );
+        })}
+      </Navigation>
+      <Divider style={{ marginBottom: "1rem" }} />
+      <Outlet />
     </>
   );
 };
