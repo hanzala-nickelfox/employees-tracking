@@ -17,45 +17,15 @@ import Typography from "@mui/material/Typography";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuIcon from "@mui/icons-material/Menu";
-import Home from "@mui/icons-material/Home";
-import Activities from "@mui/icons-material/Rowing";
-import Settings from "@mui/icons-material/Settings";
-import Logout from "@mui/icons-material/Logout";
-import Notifications from "@mui/icons-material/Notifications";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Navigation from "./Navigation";
+import { drawerList } from "assets/data/navLists";
 const drawerWidth = 220;
 const settings = ["Profile", "Account", "Logout"];
-const menuList = [
-  {
-    itemName: "Home",
-    icon: <Home />,
-    ItemLink: "dashboard"
-  },
-  {
-    itemName: "Activities",
-    icon: <Activities />,
-    ItemLink: "activities"
-  },
-  {
-    itemName: "Notifications",
-    icon: <Notifications />,
-    ItemLink: "notifications"
-  },
-  {
-    itemName: "Settings",
-    icon: <Settings />,
-    ItemLink: "settings"
-  },
-  {
-    itemName: "Logout",
-    icon: <Logout />,
-    ItemLink: "logout"
-  }
-];
+
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -214,7 +184,7 @@ const Layout = (props) => {
         </DrawerHeader>
         <Divider />
         <Navigation style={style}>
-          {menuList.map((menuItem) => {
+          {drawerList.map((menuItem) => {
             return (
               <NavLink
                 style={style}

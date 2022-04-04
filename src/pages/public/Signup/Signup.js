@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import BasicBtn from "../../../components/shared/Basic-btn.js";
-import FormField from "../../../components/shared/FormField.js";
 import { Col, Row } from "react-bootstrap";
 import Avatar from "@mui/material/Avatar";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -9,7 +7,9 @@ import { Container } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { signup as signupAction } from "../../../redux/users/actions";
+import { signup as signupAction } from "redux/users/actions";
+import BasicBtn from "components/shared/Basic-btn.js";
+import FormField from "components/shared/FormField.js";
 
 const SignUp = () => {
   const intialValues = {
