@@ -1,31 +1,10 @@
 import React from "react";
-import Cards from "../../../components/shared/BasicCard";
 import { CardActions, CardContent, Button } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import Cards from "components/shared/BasicCard";
+import { learningData } from "assets/data/dummyData";
 
 const Learning = () => {
-  const learningData = [
-    {
-      title: "Git session",
-      description: "This is a description for project 1",
-      Date: "N/A"
-    },
-    {
-      title: "Jira session",
-      description: "This is a description for project 1",
-      Date: "N/A"
-    },
-    {
-      title: "Teams session",
-      description: "This is a description for project 1",
-      Date: "N/A"
-    },
-    {
-      title: "Practise session",
-      description: "This is a description for project 1",
-      endDate: "N/A"
-    }
-  ];
   const divStyle = {
     display: "flex",
     flexDirection: "row",

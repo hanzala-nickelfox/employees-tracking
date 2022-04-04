@@ -1,29 +1,9 @@
 import React from "react";
-import Cards from "../../../components/shared/BasicCard";
 import { CardContent, CardActions, Button } from "@mui/material";
 import Typography from "@mui/material/Typography";
-
+import Cards from "components/shared/BasicCard";
+import { personalData } from "assets/data/dummyData";
 const Personal = () => {
-  const PersonalData = [
-    {
-      title: "Savings session",
-      description: "This is a description for Savings Session",
-      startDate: "01/01/2020",
-      endDate: "01/01/2020"
-    },
-    {
-      title: "Stock market session",
-      description: "This is a description for Stock market session",
-      startDate: "01/01/2020",
-      endDate: "01/01/2020"
-    },
-    {
-      title: "Mutul fund session",
-      description: "This is a description for Mutul fund session",
-      startDate: "01/01/2020",
-      endDate: "01/01/2020"
-    }
-  ];
   const divStyle = {
     display: "flex",
     flexDirection: "row",
@@ -35,7 +15,7 @@ const Personal = () => {
         Personal improvement
       </Typography>
       <div style={divStyle}>
-        {PersonalData.map((data, index) => {
+        {personalData.map((data, index) => {
           return (
             <Cards
               key={index}
@@ -47,7 +27,8 @@ const Personal = () => {
               }}>
               <CardContent>
                 <Typography variant="h5" component="div">
-                {`${data.title}`.substring(0, 10)}{`...`}
+                  {`${data.title}`.substring(0, 10)}
+                  {`...`}
                 </Typography>
                 <hr />
                 <Typography variant="body2">

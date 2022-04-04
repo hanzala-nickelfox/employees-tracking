@@ -1,29 +1,13 @@
 import React, { useEffect } from "react";
 import { useNavigate, Outlet, NavLink } from "react-router-dom";
-import Navigation from "components/shared/Navigation";
-import { Box, Divider } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import ListItem from "@mui/material/ListItem";
 import Tab from "@mui/material/Tab";
+import Navigation from "components/shared/Navigation";
+import { navList } from "assets/data/navLists";
 
 const Activities = () => {
-  const menuList = [
-    {
-      itemName: "Projects",
-      ItemLink: "projects"
-    },
-    {
-      itemName: "Learning",
-      ItemLink: "learning"
-    },
-    {
-      itemName: "Festivals",
-      ItemLink: "festivals"
-    },
-    {
-      itemName: "Personal",
-      ItemLink: "personal"
-    }
-  ];
+  
   const navStyle = {
     display: "flex",
     justifyContent: "center"
@@ -39,11 +23,12 @@ const Activities = () => {
 
   return (
     <>
+      <Typography variant="h4">Activities</Typography>
       <Navigation style={navStyle}>
-        {menuList.map((menuItem) => {
+        {navList.map((menuItem) => {
           return (
             <Box key={menuItem.ItemLink} style={navStyle}>
-              <NavLink style={linkStyle} to={menuItem.ItemLink}>
+              <NavLink style={linkStyle} to={menuItem.ItemLink} end={true}>
                 <ListItem button>
                   <Tab label={menuItem.itemName} />
                 </ListItem>

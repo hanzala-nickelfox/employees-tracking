@@ -1,6 +1,5 @@
 import React from "react";
 import { getAuth } from "firebase/auth";
-
 const Dashboard = () => {
   const auth = getAuth();
   const user = auth.currentUser.displayName;
