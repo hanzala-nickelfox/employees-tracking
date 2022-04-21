@@ -13,17 +13,16 @@ const Projects = () => {
     (state) => state.projectReducer.projectsData
   );
 
-  
   const divStyle = {
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap"
   };
 
-  const linkStyle={
-    textDecoration:'none',
-    color:'inherit'
-  }
+  const linkStyle = {
+    textDecoration: "none",
+    color: "inherit"
+  };
   return (
     <>
       <Typography variant="h4" component="div">
@@ -43,7 +42,6 @@ const Projects = () => {
               <CardContent>
                 <Typography variant="h5" component="div">
                   {`${project.title}`.substring(0, 15)}
-                  {"..."}
                 </Typography>
                 <hr />
                 <Typography sx={{ fontSize: 16 }} color="GrayText" gutterBottom>
@@ -69,7 +67,9 @@ const Projects = () => {
               <CardActions>
                 <Button variant="contained" underline="none">
                   <Typography>
-                    <NavLink style={linkStyle} to={project.title}>Details</NavLink>
+                    <NavLink style={linkStyle} to={project.title}>
+                      Details
+                    </NavLink>
                   </Typography>
                 </Button>
               </CardActions>

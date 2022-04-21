@@ -1,13 +1,21 @@
 import { Navigate } from "react-router-dom";
 import { takeLatest, put } from "redux-saga/effects";
-import { setUserData, setIsLoggedIn, setIsChecking } from "./slice";
+import { setUserData, setIsLoggedIn, setIsChecking, setIsUser } from "./slice";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   updateProfile,
   signInWithEmailAndPassword
 } from "firebase/auth";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import {
+  doc,
+  setDoc,
+  collection,
+  serverTimestamp,
+  query,
+  where,
+  getDocs
+} from "firebase/firestore";
 import { toast } from "react-toastify";
 import { signup as signupAction, signin as signinAction } from "./actions";
 import { db } from "firebase.config";
@@ -41,7 +49,7 @@ export function* signup(action) {
       yield setDoc(doc(db, "users", user.uid), newUser);
       yield put(setUserData(data));
       toast.success("Signup Successful");
-      Navigate('/login')
+      Navigate("/login");
     } catch (error) {
       toast.error("Something Went Wrong. Try Again Later!");
     }
@@ -67,6 +75,25 @@ export function* signin(action) {
         yield put(setIsChecking(true));
         toast.error("Please Signup First");
       } else {
+
+        const userRef = yield collection(db, "users");
+        const q = yield query(
+          userRef,
+          where(user.uid, "==", logAuth.currentUser.uid)
+        );
+        const queriedUser = yield getDocs(q);
+        const details = [];
+        queriedUser.forEach((doc) => {
+          return details.push({
+            data: doc.data()
+          });
+        });
+        const x = details.every((doc) => {
+          return doc.data.role === "admin";
+        });
+        if (!x) {
+          yield put(setIsUser(true));
+        }
         yield put(setIsLoggedIn(true));
         yield put(setIsChecking(false));
         localStorage.setItem("token", user.accessToken);
@@ -76,6 +103,7 @@ export function* signin(action) {
     } catch (error) {
       yield put(setIsChecking(true));
       toast.error("Something Went Wrong. Try Again Later!");
+      console.log(error);
     }
   }
 }

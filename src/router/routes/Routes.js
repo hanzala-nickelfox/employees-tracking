@@ -15,7 +15,7 @@ const Routes = [
   { path: "/", element: <SignUp /> },
   { path: "/login", element: <Login /> },
 
-  //Private Routes to Be Added Here,
+  //Private Wrapper to be Placed here,
   {
     path: "",
     element: <AuthWrapper />,
@@ -25,6 +25,10 @@ const Routes = [
         path: "/dashboard",
         element: <Dashboard />
       },
+      {
+        path: "assigned",
+        element: <h1>Assigned Projects</h1>
+      },
 
       {
         path: "activities",
@@ -33,14 +37,14 @@ const Routes = [
           {
             path: "projects",
             element: <Projects />,
-            children:[
+            children: [
               {
-                path:':id',
-                element:(<h1>Details</h1>)
-
+                path: ":id",
+                element: <h1>Details</h1>
               }
             ]
           },
+
           {
             path: "learning",
             element: <Learning />
@@ -52,7 +56,7 @@ const Routes = [
           {
             path: "personal",
             element: <Personal />
-          },
+          }
         ]
       },
 
