@@ -17,45 +17,16 @@ import Typography from "@mui/material/Typography";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuIcon from "@mui/icons-material/Menu";
-import Home from "@mui/icons-material/Home";
-import Activities from "@mui/icons-material/Rowing";
-import Settings from "@mui/icons-material/Settings";
-import Logout from "@mui/icons-material/Logout";
-import Notifications from "@mui/icons-material/Notifications";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import Navigation from "./Navigation";
+import Navigation from "../Navigation";
+import { adminDrawerList } from "assets/data/navLists";
+import { Logout } from "@mui/icons-material";
+
 const drawerWidth = 220;
 const settings = ["Profile", "Account", "Logout"];
-const menuList = [
-  {
-    itemName: "Home",
-    icon: <Home />,
-    ItemLink: "dashboard"
-  },
-  {
-    itemName: "Activities",
-    icon: <Activities />,
-    ItemLink: "activities"
-  },
-  {
-    itemName: "Notifications",
-    icon: <Notifications />,
-    ItemLink: "notifications"
-  },
-  {
-    itemName: "Settings",
-    icon: <Settings />,
-    ItemLink: "settings"
-  },
-  {
-    itemName: "Logout",
-    icon: <Logout />,
-    ItemLink: "logout"
-  }
-];
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -123,7 +94,7 @@ const AppBar = styled(MuiAppBar, {
   })
 }));
 
-const Layout = (props) => {
+const Admin = (props) => {
   const theme = useTheme();
   const auth = getAuth();
   const user = auth.currentUser.displayName;
@@ -214,12 +185,9 @@ const Layout = (props) => {
         </DrawerHeader>
         <Divider />
         <Navigation style={style}>
-          {menuList.map((menuItem) => {
+          {adminDrawerList.map((menuItem) => {
             return (
-              <NavLink
-                style={style}
-                to={menuItem.ItemLink}
-                key={menuItem.itemName}>
+              <NavLink style={style} to={menuItem.ItemLink} key={menuItem.key}>
                 <ListItem button>
                   <ListItemIcon>{menuItem.icon}</ListItemIcon>
                   <ListItemText primary={menuItem.itemName} />
@@ -227,10 +195,15 @@ const Layout = (props) => {
               </NavLink>
             );
           })}
+
+          <ListItem button>
+            <ListItemIcon>{<Logout />}</ListItemIcon>
+            <ListItemText primary="Logout" />
+          </ListItem>
         </Navigation>
       </Drawer>
     </>
   );
 };
 
-export default Layout;
+export default Admin;

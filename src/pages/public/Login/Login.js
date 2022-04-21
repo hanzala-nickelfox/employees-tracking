@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import BasicBtn from "../../../components/shared/Basic-btn.js";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signin as signinAction } from "redux/users/actions";
 import { Row, Col } from "react-bootstrap";
 import { Container } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import FormField from "../../../components/shared/FormField";
 import Grid from "@mui/material/Grid";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { signin as signinAction } from "../../../redux/users/actions";
 import AppLoader from "components/Loader/AppLoader.js";
+import BasicBtn from "components/shared/Basic-btn.js";
+import FormField from "components/shared/FormField";
 
 const Login = () => {
   const { isloggedIn } = useSelector((state) => state.userReducer);

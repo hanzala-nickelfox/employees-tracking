@@ -11,8 +11,7 @@ const AuthWrapper = ({ children }) => {
     <>
       <DashboardLayout />
       <Main open={isOpen}>
-        <Outlet>{children}</Outlet>
-        
+        <Outlet>{children}</Outlet>     
       </Main>
     </>
   ) : (

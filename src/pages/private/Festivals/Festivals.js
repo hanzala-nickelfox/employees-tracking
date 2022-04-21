@@ -1,28 +1,11 @@
 import React from "react";
-import Cards from "../../../components/shared/BasicCard";
+import Cards from "components/shared/BasicCard";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
-
+import { festivalData } from "assets/data/dummyData";
 const Festivals = () => {
-  const festivalData = [
-    {
-      title: "Independence session",
-      description: "This is a description for Independence Session",
-      Date: "15/07/2020"
-    },
-    {
-      title: "Republic session",
-      description: "This is a description for Republic Session",
-      Date: "26/01/2020"
-    },
-    {
-      title: "New year session",
-      description: "This is a description for New Yesar Session",
-      Date: "31/12/2020"
-    }
-  ];
   const divStyle = {
     display: "flex",
     flexDirection: "row",
@@ -47,7 +30,8 @@ const Festivals = () => {
               }}>
               <CardContent>
                 <Typography variant="h5" component="div">
-                {`${data.title}`.substring(0, 15)}{`...`}
+                  {`${data.title}`.substring(0, 15)}
+                  {`...`}
                 </Typography>
                 <hr />
                 <Typography sx={{ fontSize: 16 }} color="GrayText" gutterBottom>

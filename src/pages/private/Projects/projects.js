@@ -1,10 +1,12 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Typography from "@mui/material/Typography";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import { Button } from "@mui/material";
 import Cards from "components/shared/BasicCard";
+import { NavLink } from "react-router-dom";
 
 const Projects = () => {
   const ActiveProjects = useSelector(
@@ -17,9 +19,13 @@ const Projects = () => {
     flexWrap: "wrap"
   };
 
+  const linkStyle = {
+    textDecoration: "none",
+    color: "inherit"
+  };
   return (
     <>
-      <Typography variant="h5" component="div">
+      <Typography variant="h4" component="div">
         Projects
       </Typography>
       <div style={divStyle}>
@@ -36,7 +42,6 @@ const Projects = () => {
               <CardContent>
                 <Typography variant="h5" component="div">
                   {`${project.title}`.substring(0, 15)}
-                  {"..."}
                 </Typography>
                 <hr />
                 <Typography sx={{ fontSize: 16 }} color="GrayText" gutterBottom>
@@ -61,12 +66,17 @@ const Projects = () => {
               </CardContent>
               <CardActions>
                 <Button variant="contained" underline="none">
-                  <Typography>Details</Typography>
+                  <Typography>
+                    <NavLink style={linkStyle} to={project.title}>
+                      Details
+                    </NavLink>
+                  </Typography>
                 </Button>
               </CardActions>
             </Cards>
           );
         })}
+        <Outlet />
       </div>
     </>
   );
